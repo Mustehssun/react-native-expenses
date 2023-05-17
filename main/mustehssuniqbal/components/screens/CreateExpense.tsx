@@ -7,17 +7,17 @@ import {
     Alert
   } from 'react-native';
 import screenNames from '../../constants/screenNames';
-import expenses from '../../domain/singletonList';
+import { createExpense } from '../../service/expenseService';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState({});
 
-    const submit = () => {
-        setExpense({...expense, id: expenses.get()[expenses.get().length-1].id+1});
+    const submit = async () => {
+        const createdExpense = createExpense(expense);
 
-        expenses.add(expense);
+        setExpense(createdExpense);
 
-        console.log(expense);
+        console.log(createdExpense);
         Alert.alert("Expense created successfully!");
 
         navigation.navigate(screenNames.HOME_SCREEN);
@@ -29,27 +29,28 @@ const CreateExpense = ({ navigation }: any) => {
             <TextInput
                 placeholder='Title'
                 onChangeText={title => setExpense({...expense, title})}
-                value={expense.title}
+                value={expense?.title}
             />
 
             <Text>Recipient Name:</Text>
             <TextInput
                 placeholder='Recipient Name'
                 onChangeText={recipientName => setExpense({...expense, recipientName})}
-                value={expense.recipientName}
+                value={expense?.recipientName}
             />
 
             <Text>Relation with Recipient:</Text>
             <TextInput
                 placeholder='Relation with Recipient'
                 onChangeText={relationWithRecipient => setExpense({...expense, relationWithRecipient})}
-                value={expense.relationWithRecipient}
+                value={expense?.relationWithRecipient}
             />
 
             <Text>Amount:</Text>
             <TextInput
                 placeholder='Amount'
                 onChangeText={amount => setExpense({...expense, amount})}
+                value={expense?.amount}
             />
             <Button
                 title="Submit"
