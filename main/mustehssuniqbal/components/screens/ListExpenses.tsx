@@ -1,6 +1,7 @@
 import { FlatList, Text, Button } from "react-native";
 import { useEffect, useState } from "react";
 import screenNames from "../../constants/screenNames";
+import expenses from "../../domain/singletonList";
 import { getExpenses } from "../../service/expenseService";
 
 const ListExpenses = ({navigation}: any) => {
@@ -8,7 +9,11 @@ const ListExpenses = ({navigation}: any) => {
 
     useEffect(() => {
         const load = async () => {
-            setExpenses((await getExpenses())?.data);
+            console.log("fetched expenses:");
+            
+            const data = (await getExpenses())?.data;
+
+            setExpenses(data);
         }
         load();
     }, []);
@@ -19,8 +24,8 @@ const ListExpenses = ({navigation}: any) => {
                 data={expenses}
                 renderItem={({item}) => (
                     <Button 
-                    title={item?.title} 
-                    onPress={() => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item?.id })} 
+                    title={item.title} 
+                    onPress={() => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item.id })} 
                     />
                 )}
             />

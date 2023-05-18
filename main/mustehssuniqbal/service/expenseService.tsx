@@ -20,9 +20,14 @@ const updateExpense = (id: number, expense: MonthlyExpense) => {
     return postRequest(`/expenses/${id}`, expense);
 };
 
+const deleteExpense = (id: string) => {
+    return postRequest(`/expenses/${id}/delete`, {});
+};
+
 export {
     getExpenses,
     getExpense,
     createExpense,
-    updateExpense
+    updateExpense,
+    deleteExpense
 };

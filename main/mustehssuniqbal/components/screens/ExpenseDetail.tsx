@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Text, TextInput, Button, Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
-import expenses from "../../domain/singletonList";
-import { getExpense, updateExpense } from "../../service/expenseService";
+import { deleteExpense, getExpense, updateExpense } from "../../service/expenseService";
+const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState({});
@@ -16,9 +16,17 @@ const ExpenseDetail = ({ route, navigation }: any) => {
 
     const submit = async () => {
         const updatedExpense = await updateExpense(route.params.id, expense);
-        setExpense(updateExpense);
+        setExpense(updatedExpense);
 
         Alert.alert("Expense edited successfully!");
+
+        navigation.navigate(screenNames.HOME_SCREEN);
+    };
+
+    const deleteExpense = async () => {
+        await service.deleteExpense(route.params.id);
+
+        Alert.alert("Expense deleted successfully!");
 
         navigation.navigate(screenNames.HOME_SCREEN);
     };
@@ -55,6 +63,11 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             <Button
                 title="Submit"
                 onPress={submit}
+            />
+            <Button
+                title="Delete"
+                onPress={deleteExpense}
+                color="red"
             />
         </>
     );
