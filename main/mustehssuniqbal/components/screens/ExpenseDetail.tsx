@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
-import { Text, TextInput, Button, Alert } from "react-native";
+import { Text, TextInput, Button, Alert, ActivityIndicator } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { deleteExpense, getExpense, updateExpense } from "../../service/expenseService";
+import createLoader from "../../loader/loader";
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [showLoader, hideLoader] = createLoader(setIsLoading);
 
     useEffect(() => {
+        showLoader();
         const load = async () => {
             setExpense((await getExpense(route.params.id))?.data);
+
+            hideLoader();
         };
         load();
     }, []);
 
     const submit = async () => {
+        showLoader();
+
         const updatedExpense = await updateExpense(route.params.id, expense);
         setExpense(updatedExpense);
+
+        hideLoader();
 
         Alert.alert("Expense edited successfully!");
 
@@ -24,7 +34,11 @@ const ExpenseDetail = ({ route, navigation }: any) => {
     };
 
     const deleteExpense = async () => {
+        showLoader();
+
         await service.deleteExpense(route.params.id);
+
+        hideLoader();
 
         Alert.alert("Expense deleted successfully!");
 
@@ -33,6 +47,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
 
     return (
         <>
+            <ActivityIndicator animating={isLoading} size="large" />
             <Text>Title:</Text>
             <TextInput
                 placeholder='Title'

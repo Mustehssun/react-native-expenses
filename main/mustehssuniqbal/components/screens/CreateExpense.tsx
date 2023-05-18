@@ -4,20 +4,26 @@ import {
     TextInput,
     Button,
     View,
-    Alert
+    Alert,
+    ActivityIndicator
   } from 'react-native';
 import screenNames from '../../constants/screenNames';
 import { createExpense } from '../../service/expenseService';
+import createLoader from '../../loader/loader';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState({});
+    const [isLoading, setIsLoading]: [any, any] = useState(false);
+    const [showLoader, hideLoader] = createLoader(setIsLoading);
 
     const submit = async () => {
+        showLoader();
+
         const createdExpense = createExpense(expense);
 
         setExpense(createdExpense);
 
-        console.log(createdExpense);
+        hideLoader();
         Alert.alert("Expense created successfully!");
 
         navigation.navigate(screenNames.HOME_SCREEN);
@@ -25,6 +31,7 @@ const CreateExpense = ({ navigation }: any) => {
 
     return (
         <>
+            <ActivityIndicator animating={isLoading} size="large" />
             <Text>Title:</Text>
             <TextInput
                 placeholder='Title'

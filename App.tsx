@@ -11,6 +11,7 @@ import CreateExpense from './main/mustehssuniqbal/components/screens/CreateExpen
 import ListExpenses from './main/mustehssuniqbal/components/screens/ListExpenses';
 import ExpenseDetail from './main/mustehssuniqbal/components/screens/ExpenseDetail';
 import HomeScreen from './main/mustehssuniqbal/components/screens/HomeScreen';
+import {View} from "react-native";
 
 import screenNames from './main/mustehssuniqbal/constants/screenNames';
 
