@@ -2,6 +2,7 @@ import GenericCard from "../ui/GenericCard";
 import screenNames from "../../constants/screenNames";
 import React from "react";
 import { ScrollView } from "react-native";
+import imagesBaseUrl from "../../constants/images";
 
 const HomeScreen = ({navigation}: any) => {
     return (
@@ -9,12 +10,14 @@ const HomeScreen = ({navigation}: any) => {
             <GenericCard
                 title={"Create Expense"}
                 onClick={() => navigation.navigate(screenNames.CREATE_EXPENSE)}
-                captionDescription="Create your expense here"
+                captionDescription="File your expense here"
+                imageUrl={imagesBaseUrl + "invoice.jpeg"} 
             />
 
             <GenericCard
                 title={"List Expenses"}
                 onClick={() => navigation.navigate(screenNames.LIST_EXPENSES)}
+                captionDescription="View your expenses here"
             />
         </ScrollView>
     );

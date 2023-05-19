@@ -5,7 +5,7 @@ const { Text, Button } = require("react-native");
 const GenericCard = ({
     title, 
     onClick, 
-    image,
+    imageUrl,
     captionImage,
     captionDescription,
     captionFooter

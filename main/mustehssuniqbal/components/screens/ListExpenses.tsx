@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import screenNames from "../../constants/screenNames";
 import { getExpenses } from "../../service/expenseService";
 import createLoader from "../../loader/loader";
+import GenericList from "../ui/GenericList";
 
 const ListExpenses = ({navigation}: any) => {
     const [expenses, setExpenses] = useState([]);
@@ -26,14 +27,12 @@ const ListExpenses = ({navigation}: any) => {
     return (
         <>
             <ActivityIndicator size="large" animating={isLoading} />
-            <FlatList
+            <GenericList
                 data={expenses}
-                renderItem={({item}) => (
-                    <Button 
-                    title={item.title} 
-                    onPress={() => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item.id })} 
-                    />
-                )}
+                getTitle={(item: any) => item.title}
+                getDescription={(item: any) => "Type of expense (TODO)"}
+                getIcon={(item: any) => "menu"}
+                onItemPress={(item: any) => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item.id })}
             />
         </>
     );

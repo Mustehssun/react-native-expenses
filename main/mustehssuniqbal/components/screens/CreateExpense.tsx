@@ -11,8 +11,11 @@ import screenNames from '../../constants/screenNames';
 import { createExpense } from '../../service/expenseService';
 import createLoader from '../../loader/loader';
 
+import GenericTextInput from '../ui/GenericTextInput';
+import GenericButton from '../ui/GenericButton';
+
 const CreateExpense = ({ navigation }: any) => {
-    const [expense, setExpense]: [any, any] = useState({});
+    const [expense, setExpense]: [any, any] = useState({amount: 0});
     const [isLoading, setIsLoading]: [any, any] = useState(false);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
 
@@ -32,36 +35,34 @@ const CreateExpense = ({ navigation }: any) => {
     return (
         <>
             <ActivityIndicator animating={isLoading} size="large" />
-            <Text>Title:</Text>
-            <TextInput
-                placeholder='Title'
-                onChangeText={title => setExpense({...expense, title})}
+            <GenericTextInput
+                label='Title'
+                onChangeText={(title: any) => setExpense({...expense, title})}
                 value={expense?.title}
             />
 
-            <Text>Recipient Name:</Text>
-            <TextInput
-                placeholder='Recipient Name'
-                onChangeText={recipientName => setExpense({...expense, recipientName})}
+            <GenericTextInput
+                label='Recipient Name'
+                onChangeText={(recipientName: any) => setExpense({...expense, recipientName})}
                 value={expense?.recipientName}
             />
 
-            <Text>Relation with Recipient:</Text>
-            <TextInput
-                placeholder='Relation with Recipient'
-                onChangeText={relationWithRecipient => setExpense({...expense, relationWithRecipient})}
+            <GenericTextInput
+                label='Relation with Recipient'
+                onChangeText={(relationWithRecipient: any) => setExpense({...expense, relationWithRecipient})}
                 value={expense?.relationWithRecipient}
             />
 
-            <Text>Amount:</Text>
-            <TextInput
-                placeholder='Amount'
-                onChangeText={amount => setExpense({...expense, amount})}
-                value={expense?.amount}
+            <GenericTextInput
+                label='Amount'
+                onChangeText={(amount: any) => setExpense({...expense, amount})}
+                value={expense?.amount + ""}
             />
-            <Button
+
+            <GenericButton
                 title="Submit"
                 onPress={submit}
+                color="blue"
             />
         </>
     );
