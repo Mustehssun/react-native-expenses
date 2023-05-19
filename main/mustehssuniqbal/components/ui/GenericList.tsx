@@ -8,6 +8,10 @@ const GenericList = ({
     getIcon,
     onItemPress
 }: any) => {
+    if(onItemPress == null) {
+        onItemPress = (item: any) => {};
+    }
+
     return (
         <FlatList
             data={data}

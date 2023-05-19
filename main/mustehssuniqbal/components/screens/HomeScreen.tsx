@@ -15,9 +15,15 @@ const HomeScreen = ({navigation}: any) => {
             />
 
             <GenericCard
-                title={"List Expenses"}
+                title={"Expenses"}
                 onClick={() => navigation.navigate(screenNames.LIST_EXPENSES)}
                 captionDescription="View your expenses here"
+            />
+
+            <GenericCard
+                title={"Receipts"}
+                onClick={() => navigation.navigate(screenNames.LIST_RECEIPTS)}
+                captionDescription="View your receipts here"
             />
         </ScrollView>
     );

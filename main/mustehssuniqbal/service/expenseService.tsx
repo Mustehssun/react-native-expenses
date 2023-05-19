@@ -24,10 +24,25 @@ const deleteExpense = (id: string) => {
     return postRequest(`/expenses/${id}/delete`, {});
 };
 
+const pay = (id: string, amountPaid: number, paidOn: Date) => {
+    return postRequest(`/expenses/${id}/pay`, {amountPaid, paidOn});
+};
+
+const getReceipts = () => {
+    return getRequest("/expenses/receipts/");
+};
+
+const getReceipt = (id: string) => {
+    return getRequest(`/expenses/receipts/${id}`);
+};
+
 export {
     getExpenses,
     getExpense,
     createExpense,
     updateExpense,
-    deleteExpense
+    deleteExpense,
+    pay,
+    getReceipts,
+    getReceipt
 };
