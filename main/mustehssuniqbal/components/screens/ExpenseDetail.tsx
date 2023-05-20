@@ -80,18 +80,21 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             <GenericButton
                 title="Submit"
                 onPress={submit}
-                color="blue"
+                color="#774BE6"
+                icon="check"
             />
             <GenericButton
                 title="Delete"
                 onPress={deleteExpense}
-                color="red"
+                color="#E02940"
+                icon="delete"
             />
 
             <GenericButton
                 title="Pay"
                 onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { id: expense.id})}
-                color="green"
+                color="#32D857"
+                icon="currency-eur"
             />
         </>
     );

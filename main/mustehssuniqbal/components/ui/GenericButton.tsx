@@ -5,7 +5,8 @@ const GenericButton = ({
     title, 
     onPress,
     icon,
-    color
+    color,
+    textColor
 }: any) => {
     return (
         <Button 
@@ -14,6 +15,7 @@ const GenericButton = ({
             mode="contained-tonal"
             buttonColor={color}
             dark={true}
+            style={{borderRadius: 0}}
         >{title}</Button>
     );
 };

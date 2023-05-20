@@ -4,6 +4,7 @@ import GenericButton from "../ui/GenericButton";
 import createLoader from "../../loader/loader";
 import { Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
+import { getExpense } from "../../service/expenseService";
 
 const service = require("../../service/expenseService");
 
@@ -11,6 +12,26 @@ const PayExpense = ({route, navigation}: any) => {
     const [payment, setPayment] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
+
+    useEffect(() => {
+        const load = async () => {
+            showLoader();
+
+            const expense = (await getExpense(route.params.id))?.data;
+
+            console.log("Expense:");
+            console.log(expense);
+
+            hideLoader();
+
+            setPayment({...payment, amountPaid: expense.amount+""});
+
+            console.log("Payment:");
+            console.log(payment);
+        };
+
+        load();
+    }, []);
 
     const pay = async () => {
         showLoader();
@@ -27,10 +48,6 @@ const PayExpense = ({route, navigation}: any) => {
         navigation.navigate(screenNames.HOME_SCREEN);
     };
 
-    useEffect(() => {
-        hideLoader();
-    }, []);
-
     return (
         <>
             <GenericTextInput 
@@ -43,6 +60,7 @@ const PayExpense = ({route, navigation}: any) => {
                 title="Confirm payment"
                 onPress={pay}
                 color="green"
+                icon="ticket-confirmation-outline"
             />
         </>
     );

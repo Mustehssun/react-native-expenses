@@ -8,7 +8,8 @@ const GenericCard = ({
     imageUrl,
     captionImage,
     captionDescription,
-    captionFooter
+    captionFooter,
+    style
 }: any) => {
     return (
         <>

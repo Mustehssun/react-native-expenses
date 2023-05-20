@@ -28,7 +28,7 @@ const ListReceipts = ({navigation}: any) => {
             <GenericList 
                 data={receipts}
                 getTitle={(item: any) => item.expense.title}
-                getIcon={(item: any) => "menu"}
+                getIcon={(item: any) => "receipt"}
                 getDescription={(item: any) => `Amount paid: ${item.amountPaid} ${item.paidOn == null? "": " - " + moment(item.paidOn).format("ddd DD-MM-yyyy")}`}
                 onItemPress={(item: any) => navigation.navigate(screenNames.RECEIPT_DETAIL, {id: item.id})}
             />

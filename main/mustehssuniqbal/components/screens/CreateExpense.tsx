@@ -62,7 +62,8 @@ const CreateExpense = ({ navigation }: any) => {
             <GenericButton
                 title="Submit"
                 onPress={submit}
-                color="blue"
+                color="#774BE6"
+                icon="check"
             />
         </>
     );
