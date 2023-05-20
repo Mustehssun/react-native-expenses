@@ -6,7 +6,7 @@ import moment from "moment";
 import screenNames from "../../constants/screenNames";
 const service = require("../../service/expenseService");
 
-const ListReceipts = ({navigation}: any) => {
+const ListReceipts = ({navigation, route}: any) => {
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
     const [receipts, setReceipts] = useState([]);
@@ -15,7 +15,13 @@ const ListReceipts = ({navigation}: any) => {
         const load = async () => {
             showLoader();
 
-            const receipts = (await service.getReceipts())?.data;
+            let receipts = [];
+            if(route.params.expenseId != null) {
+                receipts = (await service.getReceiptsOfExpense(route.params.expenseId))?.data
+            }
+            else {
+                receipts = (await service.getReceipts())?.data;
+            }
             setReceipts(receipts);
 
             hideLoader();

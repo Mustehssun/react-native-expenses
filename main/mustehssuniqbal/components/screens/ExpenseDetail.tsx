@@ -91,6 +91,13 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             />
 
             <GenericButton
+                title="Show Receipts"
+                onPress={() => navigation.navigate(screenNames.LIST_RECEIPTS, { expenseId: expense.id})}
+                color="#194D33"
+                icon="currency-eur"
+            />
+
+            <GenericButton
                 title="Pay"
                 onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { id: expense.id})}
                 color="#32D857"

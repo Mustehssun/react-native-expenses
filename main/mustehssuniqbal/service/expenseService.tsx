@@ -32,6 +32,10 @@ const getReceipts = () => {
     return getRequest("/expenses/receipts/");
 };
 
+const getReceiptsOfExpense = (id: string) => {
+    return getRequest(`/expenses/${id}/receipts/`);
+}; 
+
 const getReceipt = (id: string) => {
     return getRequest(`/expenses/receipts/${id}`);
 };
@@ -44,5 +48,6 @@ export {
     deleteExpense,
     pay,
     getReceipts,
+    getReceiptsOfExpense,
     getReceipt
 };
