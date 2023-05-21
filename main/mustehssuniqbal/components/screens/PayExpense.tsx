@@ -17,7 +17,7 @@ const PayExpense = ({route, navigation}: any) => {
         const load = async () => {
             showLoader();
 
-            const expense = (await getExpense(route.params.id))?.data;
+            const expense = await getExpense(route.params.id);
 
             console.log("Expense:");
             console.log(expense);
@@ -25,9 +25,6 @@ const PayExpense = ({route, navigation}: any) => {
             hideLoader();
 
             setPayment({...payment, amountPaid: expense.amount+""});
-
-            console.log("Payment:");
-            console.log(payment);
         };
 
         load();
@@ -57,10 +54,10 @@ const PayExpense = ({route, navigation}: any) => {
             />
 
             <GenericButton
-                title="Confirm payment"
+                title="Confirm"
                 onPress={pay}
                 color="green"
-                icon="ticket-confirmation-outline"
+                icon="check"
             />
         </>
     );

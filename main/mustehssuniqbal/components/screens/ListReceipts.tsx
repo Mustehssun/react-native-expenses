@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import createLoader from "../../loader/loader";
 import moment from "moment";
 import screenNames from "../../constants/screenNames";
+import { defaultNullObject } from "../../utils/objectUtils";
 const service = require("../../service/expenseService");
 
 const ListReceipts = ({navigation, route}: any) => {
@@ -15,12 +16,13 @@ const ListReceipts = ({navigation, route}: any) => {
         const load = async () => {
             showLoader();
 
+            const expenseId = defaultNullObject(() => route.params.expenseId);
             let receipts = [];
-            if(route.params.expenseId != null) {
-                receipts = (await service.getReceiptsOfExpense(route.params.expenseId))?.data
+            if(expenseId != null) {
+                receipts = await service.getReceiptsOfExpense(expenseId);
             }
             else {
-                receipts = (await service.getReceipts())?.data;
+                receipts = await service.getReceipts();
             }
             setReceipts(receipts);
 

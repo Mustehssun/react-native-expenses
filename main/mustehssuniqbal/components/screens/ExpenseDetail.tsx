@@ -15,7 +15,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
     useEffect(() => {
         showLoader();
         const load = async () => {
-            setExpense((await getExpense(route.params.id))?.data);
+            setExpense(await getExpense(route.params.id));
 
             hideLoader();
         };
@@ -94,11 +94,11 @@ const ExpenseDetail = ({ route, navigation }: any) => {
                 title="Show Receipts"
                 onPress={() => navigation.navigate(screenNames.LIST_RECEIPTS, { expenseId: expense.id})}
                 color="#194D33"
-                icon="currency-eur"
+                icon="receipt"
             />
 
             <GenericButton
-                title="Pay"
+                title="Record payment"
                 onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { id: expense.id})}
                 color="#32D857"
                 icon="currency-eur"

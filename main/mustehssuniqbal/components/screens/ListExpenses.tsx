@@ -13,10 +13,7 @@ const ListExpenses = ({navigation}: any) => {
     useEffect(() => {
         const load = async () => {
             showLoader();
-
-            console.log("fetched expenses:");
-            
-            const data = (await getExpenses())?.data;
+            const data = await getExpenses();
 
             setExpenses(data);
             hideLoader();

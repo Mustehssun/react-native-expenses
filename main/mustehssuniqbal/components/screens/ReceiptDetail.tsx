@@ -17,10 +17,7 @@ const ReceiptDetail = ({route}: any) => {
         const load = async () => {
             showLoader();
 
-            const data = (await service.getReceipt(route.params.id)).data;
-
-            console.log("Receipt Detail");
-            console.log(data);
+            const data = await service.getReceipt(route.params.id);
 
             setReceipt(data);
 

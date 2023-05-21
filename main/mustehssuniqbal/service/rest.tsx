@@ -4,7 +4,9 @@ const baseUrl: string = "http://10.0.2.2:3001";
 
 const getRequest = async (url: string) => {
     try {
-        return await axios.get(baseUrl + url);
+        const res = await axios.get(baseUrl + url);
+
+        return res.data;
     } catch(ex) {
         console.trace(ex);
     }
@@ -12,7 +14,8 @@ const getRequest = async (url: string) => {
 
 const postRequest = async (url: string, payload: any) => {
     try {
-        return await axios.post(baseUrl + url, payload);
+        const res = await axios.post(baseUrl + url, payload);
+        return res.data;
     } catch(ex) {
         console.trace(ex);
     }
