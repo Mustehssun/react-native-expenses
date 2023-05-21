@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import createLoader from "../../loader/loader";
 const service = require("../../service/expenseService");
 import moment from "moment";
+import screenNames from "../../constants/screenNames";
 
-const ReceiptDetail = ({route}: any) => {
+const ReceiptDetail = ({route, navigation}: any) => {
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
     const [receipt, setReceipt] = useState({
@@ -26,7 +27,7 @@ const ReceiptDetail = ({route}: any) => {
     return (
         <>
             <DataTable>
-                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}} onPress={() => navigation.navigate(screenNames.EXPENSE_DETAIL, {id: receipt.expense.id})}>
                     <DataTable.Cell>Title</DataTable.Cell>
                     <DataTable.Cell>{receipt?.expense.title}</DataTable.Cell>
                 </DataTable.Row>
