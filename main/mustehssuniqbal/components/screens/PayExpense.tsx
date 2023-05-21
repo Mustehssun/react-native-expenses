@@ -5,7 +5,9 @@ import createLoader from "../../loader/loader";
 import { Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { getExpense } from "../../service/expenseService";
-import { DataTable } from "react-native-paper";
+import { DataTable, Text, TextInput } from "react-native-paper";
+import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import moment from "moment";
 
 const service = require("../../service/expenseService");
 
@@ -36,9 +38,6 @@ const PayExpense = ({route, navigation}: any) => {
     const pay = async () => {
         showLoader();
 
-        if(payment.paidOn == null) {
-            payment.paidOn = new Date();
-        }
         const receipt = await service.pay(route.params.expenseId, payment?.amountPaid, payment?.paidOn);
         
         hideLoader();
@@ -46,6 +45,13 @@ const PayExpense = ({route, navigation}: any) => {
         Alert.alert("Payment recorded successfully!");
 
         navigation.navigate(screenNames.HOME_SCREEN);
+    };
+
+    const selectDate = () => {
+        const date = DateTimePickerAndroid.open({
+            value: new Date(),
+            onChange: event => {payment.paidOn = new Date(event.nativeEvent.timestamp);setPayment({...payment, paidon: new Date(event.nativeEvent.timestamp)});}
+        });
     };
 
     return (
@@ -73,6 +79,18 @@ const PayExpense = ({route, navigation}: any) => {
                 value={payment?.amountPaid}
             />
 
+            <TextInput
+                id="test"
+                value={moment(payment.paidOn).format("ddd DD-MM-yyyy)").toString()}
+            />
+            <GenericButton
+                title="Select Date" 
+                onPress={() => selectDate()}
+                color="blue"
+                icon="calendar"
+            />
+
+            <Text>{"\n"}</Text>
             <GenericButton
                 title="Confirm"
                 onPress={pay}

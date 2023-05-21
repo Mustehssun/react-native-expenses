@@ -5,6 +5,7 @@ import { deleteExpense, getExpense, updateExpense } from "../../service/expenseS
 import createLoader from "../../loader/loader";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
