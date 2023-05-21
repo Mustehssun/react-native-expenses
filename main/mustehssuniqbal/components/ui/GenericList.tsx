@@ -19,9 +19,9 @@ const GenericList = ({
                 return (
                     <List.Item
                         title={getTitle(item)}
-                        description={getDescription(item)}
+                        description={getDescription == null? "": getDescription(item)}
                         left={props => getIcon == null? <></>: <List.Icon {...props} icon={getIcon(item)} />}
-                        onPress={() => onItemPress(item)}
+                        onPress={onItemPress == null? () => {}: () => onItemPress(item)}
                     />
                 );
             }} 
