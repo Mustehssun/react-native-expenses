@@ -80,14 +80,8 @@ const PayExpense = ({route, navigation}: any) => {
             />
 
             <TextInput
-                id="test"
-                value={moment(payment.paidOn).format("ddd DD-MM-yyyy)").toString()}
-            />
-            <GenericButton
-                title="Select Date" 
-                onPress={() => selectDate()}
-                color="blue"
-                icon="calendar"
+                value={moment(payment.paidOn).format("ddd DD-MM-yyyy").toString()}
+                onPressOut={() => selectDate()}
             />
 
             <Text>{"\n"}</Text>
