@@ -15,14 +15,16 @@ const GenericList = ({
     return (
         <FlatList
             data={data}
-            renderItem={({item}) => (
-                <List.Item
-                    title={getTitle(item)}
-                    description={getDescription(item)}
-                    left={props => <List.Icon {...props} icon={getIcon(item)} />}
-                    onPress={() => onItemPress(item)}
-                />
-            )} 
+            renderItem={({item}) => {
+                return (
+                    <List.Item
+                        title={getTitle(item)}
+                        description={getDescription(item)}
+                        left={props => getIcon == null? <></>: <List.Icon {...props} icon={getIcon(item)} />}
+                        onPress={() => onItemPress(item)}
+                    />
+                );
+            }} 
         />
     );
 };

@@ -3,27 +3,37 @@ import screenNames from "../../constants/screenNames";
 import React from "react";
 import { ScrollView } from "react-native";
 import imagesBaseUrl from "../../constants/images";
+import GenericList from "../ui/GenericList";
 
 const HomeScreen = ({navigation}: any) => {
+    const list = [{
+             title: "Create Expense", 
+             description: "File your expense here", 
+             imageUrl: imagesBaseUrl + "invoice.jpeg", 
+             navigationScreen: screenNames.CREATE_EXPENSE,
+             icon: "plus"
+            },
+        { 
+            title: "Expenses", 
+            description: "View your expenses here", 
+            navigationScreen: screenNames.LIST_EXPENSES,
+            icon: "menu"
+        },
+        { 
+            title: "Receipts", 
+            description: "View your receipts here", 
+            navigationScreen: screenNames.LIST_RECEIPTS,
+            icon: "receipt"
+        }];
+
     return (
         <ScrollView>
-            <GenericCard
-                title={"Create Expense"}
-                onClick={() => navigation.navigate(screenNames.CREATE_EXPENSE)}
-                captionDescription="File your expense here"
-                imageUrl={imagesBaseUrl + "invoice.jpeg"} 
-            />
-
-            <GenericCard
-                title={"Expenses"}
-                onClick={() => navigation.navigate(screenNames.LIST_EXPENSES)}
-                captionDescription="View your expenses here"
-            />
-
-            <GenericCard
-                title={"Receipts"}
-                onClick={() => navigation.navigate(screenNames.LIST_RECEIPTS)}
-                captionDescription="View your receipts here"
+            <GenericList
+                data={list}
+                getTitle={(item: any) => item.title}
+                getDescription={(item: any) => item.description}
+                getIcon={(item: any) => item.icon}
+                onItemPress={(item: any) => navigation.navigate(item.navigationScreen)}
             />
         </ScrollView>
     );
