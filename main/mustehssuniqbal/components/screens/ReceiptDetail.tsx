@@ -1,10 +1,8 @@
 import { DataTable, Text } from "react-native-paper";
-import GenericCard from "../ui/GenericCard";
 import { useEffect, useState } from "react";
 import createLoader from "../../loader/loader";
 const service = require("../../service/expenseService");
 import moment from "moment";
-import { StyleSheet } from "react-native";
 
 const ReceiptDetail = ({route}: any) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +16,6 @@ const ReceiptDetail = ({route}: any) => {
             showLoader();
 
             const data = await service.getReceipt(route.params.id);
-
             setReceipt(data);
 
             hideLoader();
@@ -37,6 +34,11 @@ const ReceiptDetail = ({route}: any) => {
                 <DataTable.Row>
                     <DataTable.Cell>Recipient</DataTable.Cell>
                     <DataTable.Cell>{receipt?.expense.recipientName}</DataTable.Cell>
+                </DataTable.Row>
+
+                <DataTable.Row>
+                    <DataTable.Cell>Relation with Recipient</DataTable.Cell>
+                    <DataTable.Cell>{receipt?.expense.relationWithRecipient}</DataTable.Cell>
                 </DataTable.Row>
 
                 <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>

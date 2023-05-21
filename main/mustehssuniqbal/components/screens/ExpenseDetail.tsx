@@ -99,7 +99,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
 
             <GenericButton
                 title="Record payment"
-                onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { id: expense.id})}
+                onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { expenseId: expense.id})}
                 color="#32D857"
                 icon="currency-eur"
             />

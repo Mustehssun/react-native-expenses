@@ -5,6 +5,7 @@ import createLoader from "../../loader/loader";
 import { Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { getExpense } from "../../service/expenseService";
+import { DataTable } from "react-native-paper";
 
 const service = require("../../service/expenseService");
 
@@ -12,12 +13,14 @@ const PayExpense = ({route, navigation}: any) => {
     const [payment, setPayment] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
+    const [expense, setExpense] = useState({});
 
     useEffect(() => {
         const load = async () => {
             showLoader();
 
-            const expense = await getExpense(route.params.id);
+            const expense = await getExpense(route.params.expenseId);
+            setExpense(expense);
 
             console.log("Expense:");
             console.log(expense);
@@ -36,7 +39,7 @@ const PayExpense = ({route, navigation}: any) => {
         if(payment.paidOn == null) {
             payment.paidOn = new Date();
         }
-        const receipt = await service.pay(route.params.id, payment?.amountPaid, payment?.paidOn);
+        const receipt = await service.pay(route.params.expenseId, payment?.amountPaid, payment?.paidOn);
         
         hideLoader();
 
@@ -47,6 +50,23 @@ const PayExpense = ({route, navigation}: any) => {
 
     return (
         <>
+            <DataTable>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
+                    <DataTable.Cell>Title</DataTable.Cell>
+                    <DataTable.Cell>{expense.title}</DataTable.Cell>
+                </DataTable.Row>
+
+                <DataTable.Row>
+                    <DataTable.Cell>Recipient</DataTable.Cell>
+                    <DataTable.Cell>{expense.recipientName}</DataTable.Cell>
+                </DataTable.Row>
+
+                <DataTable.Row>
+                    <DataTable.Cell>Relation with Recipient</DataTable.Cell>
+                    <DataTable.Cell>{expense.relationWithRecipient}</DataTable.Cell>
+                </DataTable.Row>
+            </DataTable>
+
             <GenericTextInput 
                 label="Amount Paid"
                 onChangeText={(amountPaid: string) => setPayment({...payment, amountPaid})}

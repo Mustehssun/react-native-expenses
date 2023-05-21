@@ -1,4 +1,3 @@
-import GenericCard from "../ui/GenericCard";
 import screenNames from "../../constants/screenNames";
 import React from "react";
 import { ScrollView } from "react-native";
