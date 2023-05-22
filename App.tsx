@@ -17,6 +17,8 @@ import screenNames from './main/mustehssuniqbal/constants/screenNames';
 import PayExpense from './main/mustehssuniqbal/components/screens/PayExpense';
 import ListReceipts from './main/mustehssuniqbal/components/screens/ListReceipts';
 import ReceiptDetail from './main/mustehssuniqbal/components/screens/ReceiptDetail';
+import Signup from './main/mustehssuniqbal/components/screens/Signup';
+import Login from './main/mustehssuniqbal/components/screens/Login';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -68,6 +70,16 @@ function App(): JSX.Element {
           name={screenNames.RECEIPT_DETAIL}
           component={ReceiptDetail}
           options={{title: "Receipt Detail"}}
+        />
+        <Stack.Screen
+          name={screenNames.SIGNUP}
+          component={Signup}
+          options={{title: "Signup"}}
+        />
+        <Stack.Screen
+          name={screenNames.LOGIN}
+          component={Login}
+          options={{title: "Login"}}
         />
       </Stack.Navigator>
     </NavigationContainer>

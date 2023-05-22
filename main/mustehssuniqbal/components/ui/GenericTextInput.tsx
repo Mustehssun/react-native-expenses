@@ -6,8 +6,17 @@ const GenericTextInput = ({
     value,
     defaultValue,
     onChangeText,
-    onPressOut
+    onPressOut,
+    type
 }: any) => {
+    let optionalProps = {};
+    if(type == null) {
+        type = "text;"
+    }
+    else if(type == "password") {
+        optionalProps.secureTextEntry = true;
+    }
+
     return (
         <TextInput
             label={label} 
@@ -15,6 +24,8 @@ const GenericTextInput = ({
             defaultValue={defaultValue}
             onChangeText={onChangeText}
             onPressOut={onPressOut}
+            textContentType={type}
+            {...optionalProps}
         />
     );
 };

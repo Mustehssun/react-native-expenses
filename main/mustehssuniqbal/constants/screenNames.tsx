@@ -5,7 +5,9 @@ const screenNames = {
     HOME_SCREEN: "homeScreen",
     PAY_EXPENSE: "payExpense",
     LIST_RECEIPTS: "listReceipts",
-    RECEIPT_DETAIL: "receiptDetail"
+    RECEIPT_DETAIL: "receiptDetail",
+    SIGNUP: "signup",
+    LOGIN: "login"
 };
 
 export default screenNames;

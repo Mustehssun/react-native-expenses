@@ -23,6 +23,18 @@ const HomeScreen = ({navigation}: any) => {
             description: "View your receipts here", 
             navigationScreen: screenNames.LIST_RECEIPTS,
             icon: "receipt"
+        },
+        { 
+            title: "Signup", 
+            description: "Create account", 
+            navigationScreen: screenNames.SIGNUP,
+            icon: "account"
+        },
+        { 
+            title: "Login", 
+            description: "Login to your account", 
+            navigationScreen: screenNames.LOGIN,
+            icon: "login"
         }];
 
     return (
