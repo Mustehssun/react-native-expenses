@@ -5,7 +5,8 @@ const GenericTextInput = ({
     label,
     value,
     defaultValue,
-    onChangeText
+    onChangeText,
+    onPressOut
 }: any) => {
     return (
         <TextInput
@@ -13,6 +14,7 @@ const GenericTextInput = ({
             value={value}
             defaultValue={defaultValue}
             onChangeText={onChangeText}
+            onPressOut={onPressOut}
         />
     );
 };

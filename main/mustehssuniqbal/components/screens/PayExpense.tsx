@@ -38,7 +38,7 @@ const PayExpense = ({route, navigation}: any) => {
     const pay = async () => {
         showLoader();
 
-        const receipt = await service.pay(route.params.expenseId, payment?.amountPaid, payment?.paidOn);
+        const receipt = await service.pay(route.params.expenseId, payment);
         
         hideLoader();
 
@@ -79,9 +79,16 @@ const PayExpense = ({route, navigation}: any) => {
                 value={payment?.amountPaid}
             />
 
-            <TextInput
+            <GenericTextInput
+                label="Paid On"
                 value={moment(payment.paidOn).format("ddd DD-MM-yyyy").toString()}
                 onPressOut={() => selectDate()}
+            />
+
+            <GenericTextInput
+                label="Comments"
+                onChangeText={(comments: string) => setPayment({...payment, comments})}
+                value={payment?.comments}
             />
 
             <Text>{"\n"}</Text>

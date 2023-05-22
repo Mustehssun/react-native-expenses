@@ -37,19 +37,24 @@ const ReceiptDetail = ({route, navigation}: any) => {
                     <DataTable.Cell>{receipt?.expense.recipientName}</DataTable.Cell>
                 </DataTable.Row>
 
-                <DataTable.Row>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
                     <DataTable.Cell>Relation with Recipient</DataTable.Cell>
                     <DataTable.Cell>{receipt?.expense.relationWithRecipient}</DataTable.Cell>
                 </DataTable.Row>
 
-                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
+                <DataTable.Row>
                     <DataTable.Cell>Amount Paid</DataTable.Cell>
                     <DataTable.Cell>{receipt?.amountPaid}</DataTable.Cell>
                 </DataTable.Row>
 
-                <DataTable.Row>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
                     <DataTable.Cell>Payment Date</DataTable.Cell>
                     <DataTable.Cell>{receipt.paidOn == null? "": moment(receipt?.paidOn).format("ddd DD-MM-yyyy")}</DataTable.Cell>
+                </DataTable.Row>
+
+                <DataTable.Row>
+                    <DataTable.Cell>Comments</DataTable.Cell>
+                    <DataTable.Cell>{receipt.comments == null? "": receipt.comments}</DataTable.Cell>
                 </DataTable.Row>
             </DataTable>
         </>

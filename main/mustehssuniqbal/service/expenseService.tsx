@@ -24,8 +24,8 @@ const deleteExpense = (id: string) => {
     return postRequest(`/expenses/${id}/delete`, {});
 };
 
-const pay = (id: string, amountPaid: number, paidOn: Date) => {
-    return postRequest(`/expenses/${id}/pay`, {amountPaid, paidOn});
+const pay = (id: string, payment: any) => {
+    return postRequest(`/expenses/${id}/pay`, payment);
 };
 
 const getReceipts = () => {
