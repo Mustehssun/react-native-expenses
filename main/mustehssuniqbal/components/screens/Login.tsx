@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 
 const service = require("../../service/authService");
 
-const Login = ({navigation}: any) => {
+const Login = ({navigation}: any) =>    {
   const [credentials, setCredentials] = useState({});
 
   const login = async () => {
