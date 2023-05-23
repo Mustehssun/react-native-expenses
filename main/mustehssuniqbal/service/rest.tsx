@@ -29,6 +29,8 @@ const postRequest = async (url: string, payload: any) => {
     try {
         const res = await axios.post(baseUrl + url, payload);
 
+        console.log("res from postRequest: ", res);
+
         return res.data;
     } catch(ex) {
         console.trace(ex);

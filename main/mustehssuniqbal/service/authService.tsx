@@ -7,9 +7,6 @@ const signup = (user: any) => {
 
 const login = async (credentials: any) => {
     const authenticatedUser = await postRequest("/auth/login", credentials);
-
-    console.log("credentials: ", credentials);
-
     if(authenticatedUser != null) {
         await storage.setItem("user", authenticatedUser);
     }
@@ -20,8 +17,17 @@ const logout = async () => {
     await storage.removeItem("user");
 };
 
+const validateToken = async () => {
+    const res = await postRequest("/auth/validateToken", {});
+
+    console.log("res from validateToken: ", res);
+
+    return res == null? false: true;
+};
+
 export {
     signup,
     login,
-    logout
+    logout,
+    validateToken
 };

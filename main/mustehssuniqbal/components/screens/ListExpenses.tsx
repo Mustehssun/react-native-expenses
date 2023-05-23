@@ -4,6 +4,7 @@ import screenNames from "../../constants/screenNames";
 import { getExpenses } from "../../service/expenseService";
 import createLoader from "../../loader/loader";
 import GenericList from "../ui/GenericList";
+import Authentication from "../auth/Authentication";
 
 const ListExpenses = ({navigation}: any) => {
     const [expenses, setExpenses] = useState([]);
@@ -23,6 +24,7 @@ const ListExpenses = ({navigation}: any) => {
 
     return (
         <>
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
             <GenericList
                 data={expenses}

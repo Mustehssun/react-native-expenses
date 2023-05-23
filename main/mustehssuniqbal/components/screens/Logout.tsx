@@ -1,5 +1,6 @@
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import createLoader from "../../loader/loader";
 import screenNames from "../../constants/screenNames";
 import { logout } from "../../service/authService";
@@ -17,7 +18,9 @@ const Logout = ({navigation}: any) => {
         getTokenAndLogout();
         hideLoader();
 
-        navigation.navigate(screenNames.LOGIN);
+        Alert.alert("You have Logged out!");
+
+        navigation.navigate(screenNames.HOME_SCREEN);
     }, []);
 
     return (
