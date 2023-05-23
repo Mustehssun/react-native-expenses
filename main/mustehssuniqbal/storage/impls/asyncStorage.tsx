@@ -6,12 +6,20 @@ const getItem = async (key: string) => {
     return JSON.parse(stringifiedValue);
 };
 
+const getString = async (key: string) => {
+    return await AsyncStorage.getItem(key);
+};
+
 const setItem = (key: string, value: any) => {
-    AsyncStorage.setItem(key, JSON.stringify(value));
+    return AsyncStorage.setItem(key, JSON.stringify(value));
+};
+
+const setString = (key: string, value: string) => {
+    return AsyncStorage.setItem(key, value);
 };
 
 const removeItem = (key: string) => {
-    AsyncStorage.removeItem(key);
+    return AsyncStorage.removeItem(key);
 };
 
 const getKeys = async () => {
@@ -19,12 +27,14 @@ const getKeys = async () => {
 };
 
 const clear = () => {
-    AsyncStorage.clear();
+    return AsyncStorage.clear();
 };
 
 const asyncStorageImpl = {
     getItem,
+    getString,
     setItem,
+    setString,
     removeItem,
     getKeys,
     clear

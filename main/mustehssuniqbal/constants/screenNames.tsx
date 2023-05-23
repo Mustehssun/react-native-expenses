@@ -7,7 +7,8 @@ const screenNames = {
     LIST_RECEIPTS: "listReceipts",
     RECEIPT_DETAIL: "receiptDetail",
     SIGNUP: "signup",
-    LOGIN: "login"
+    LOGIN: "login",
+    LOGOUT: "logout"
 };
 
 export default screenNames;

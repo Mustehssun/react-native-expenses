@@ -14,7 +14,6 @@ const Login = ({navigation}: any) =>    {
 
     if(user != null) {
         Alert.alert("Logged in successfully!");
-        console.log(user);
 
         navigation.navigate(screenNames.HOME_SCREEN);
     }

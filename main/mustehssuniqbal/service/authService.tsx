@@ -7,12 +7,21 @@ const signup = (user: any) => {
 
 const login = async (credentials: any) => {
     const authenticatedUser = await postRequest("/auth/login", credentials);
-    await storage.setItem("user", authenticatedUser);
 
+    console.log("credentials: ", credentials);
+
+    if(authenticatedUser != null) {
+        await storage.setItem("user", authenticatedUser);
+    }
     return authenticatedUser;
+};
+
+const logout = async () => {
+    await storage.removeItem("user");
 };
 
 export {
     signup,
-    login
+    login,
+    logout
 };

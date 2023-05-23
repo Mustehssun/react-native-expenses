@@ -43,6 +43,12 @@ const HomeScreen = ({navigation}: any) => {
             description: "Login to your account", 
             navigationScreen: screenNames.LOGIN,
             icon: "login"
+        },
+        { 
+            title: "Logout", 
+            description: "Logout of your account", 
+            navigationScreen: screenNames.LOGOUT,
+            icon: "logout"
         }];
 
     return (
