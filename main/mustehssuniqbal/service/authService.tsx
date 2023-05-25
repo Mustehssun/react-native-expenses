@@ -5,7 +5,7 @@ import { postRequest } from "./rest";
 const resourceUrl: string = "/auth";
 
 const signup = (user: User): Promise<User> => {
-    return postRequest("/auth/signup", user);
+    return postRequest(`${resourceUrl}/signup`, user);
 };
 
 const login = async (credentials: User): Promise<User> => {

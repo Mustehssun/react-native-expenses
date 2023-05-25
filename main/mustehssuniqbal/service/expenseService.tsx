@@ -2,40 +2,42 @@ import Expense from "../domain/Expense";
 import Receipt from "../domain/Receipt";
 import { getRequest, postRequest } from "./rest";
 
+const resourceUrl = "/expenses";
+
 const getExpenses = (): Promise<[Expense]> => {
-    return getRequest("/expenses/");
+    return getRequest(`${resourceUrl}/`);
 }
 
 const getExpense = (id: string): Promise<Expense> => {
-    return getRequest(`/expenses/${id}`);
+    return getRequest(`${resourceUrl}/${id}`);
 };
 
 const createExpense = (expense: Expense): Promise<Expense> => {
-    return postRequest("/expenses/", expense);
+    return postRequest(`${resourceUrl}/`, expense);
 };
 
 const updateExpense = (id: number, expense: Expense): Promise<Expense> => {
-    return postRequest(`/expenses/${id}`, expense);
+    return postRequest(`${resourceUrl}/${id}`, expense);
 };
 
 const deleteExpense = (id: string): Promise<void> => {
-    return postRequest(`/expenses/${id}/delete`, {});
+    return postRequest(`${resourceUrl}/${id}/delete`, {});
 };
 
 const pay = (id: string, payment: Receipt): Promise<Receipt> => {
-    return postRequest(`/expenses/${id}/pay`, payment);
+    return postRequest(`${resourceUrl}/${id}/pay`, payment);
 };
 
 const getReceipts = (): Promise<[Receipt]> => {
-    return getRequest("/expenses/receipts/");
+    return getRequest(`${resourceUrl}/receipts/`);
 };
 
 const getReceiptsOfExpense = (id: string): Promise<[Receipt]> => {
-    return getRequest(`/expenses/${id}/receipts/`);
+    return getRequest(`${resourceUrl}/${id}/receipts/`);
 }; 
 
 const getReceipt = (id: string): Promise<Receipt> => {
-    return getRequest(`/expenses/receipts/${id}`);
+    return getRequest(`${resourceUrl}/receipts/${id}`);
 };
 
 export {
