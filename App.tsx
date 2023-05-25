@@ -20,6 +20,7 @@ import ReceiptDetail from './main/mustehssuniqbal/components/screens/ReceiptDeta
 import Signup from './main/mustehssuniqbal/components/screens/Signup';
 import Login from './main/mustehssuniqbal/components/screens/Login';
 import Logout from './main/mustehssuniqbal/components/screens/Logout';
+import Profile from './main/mustehssuniqbal/components/screens/Profile';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -86,6 +87,11 @@ function App(): JSX.Element {
           name={screenNames.LOGOUT}
           component={Logout}
           options={{title: "Logout"}}
+        />
+        <Stack.Screen
+          name={screenNames.PROFILE}
+          component={Profile}
+          options={{title: "User Profile"}}
         />
       </Stack.Navigator>
     </NavigationContainer>

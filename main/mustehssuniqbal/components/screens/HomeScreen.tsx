@@ -33,6 +33,12 @@ const HomeScreen = ({navigation}: any) => {
             icon: "receipt"
         },
         { 
+            title: "Profile", 
+            description: "View User Profile", 
+            navigationScreen: screenNames.PROFILE,
+            icon: "account"
+        },
+        { 
             title: "Signup", 
             description: "Create account", 
             navigationScreen: screenNames.SIGNUP,

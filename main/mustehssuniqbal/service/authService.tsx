@@ -1,6 +1,7 @@
 import User from "../domain/User";
-import { storage } from "../polymorphicDispatch/storage";
 import { postRequest } from "./rest";
+
+const userStorage = require("../storage/appspecific/userStorage");
 
 const resourceUrl: string = "/auth";
 
@@ -9,13 +10,13 @@ const signup = (user: User): Promise<User> => postRequest(`${resourceUrl}/signup
 const login = async (credentials: User): Promise<User> => {
     const authenticatedUser = await postRequest(`${resourceUrl}/login`, credentials);
     if(authenticatedUser != null) {
-        await storage.setItem("user", authenticatedUser);
+        await userStorage.setUser(authenticatedUser);
     }
     return authenticatedUser;
 };
 
 const logout = async () => {
-    await storage.removeItem("user");
+    await userStorage.removeUser();
 };
 
 const validateToken = async () => {

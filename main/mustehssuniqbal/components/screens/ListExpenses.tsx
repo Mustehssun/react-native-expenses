@@ -25,7 +25,9 @@ const ListExpenses = ({navigation}: any) => {
     return (
         <>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+
             <ActivityIndicator size="large" animating={isLoading} />
+            
             <GenericList
                 data={expenses}
                 getTitle={(item: any) => item.title}

@@ -52,12 +52,6 @@ const Signup = ({navigation}) => {
             />
 
             <GenericTextInput
-                label="Age"
-                onChangeText={(age: string) => setUser({...user, age})}
-                value={user?.age}
-            />
-
-            <GenericTextInput
                 label="Password"
                 onChangeText={(password: string) => setUser({...user, password})}
                 value={user?.password}
