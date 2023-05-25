@@ -2,12 +2,14 @@ import User from "../domain/User";
 import { storage } from "../polymorphicDispatch/storage";
 import { postRequest } from "./rest";
 
+const resourceUrl: string = "/auth";
+
 const signup = (user: User): Promise<User> => {
     return postRequest("/auth/signup", user);
 };
 
 const login = async (credentials: User): Promise<User> => {
-    const authenticatedUser = await postRequest("/auth/login", credentials);
+    const authenticatedUser = await postRequest(`${resourceUrl}/login`, credentials);
     if(authenticatedUser != null) {
         await storage.setItem("user", authenticatedUser);
     }
@@ -19,7 +21,7 @@ const logout = async () => {
 };
 
 const validateToken = async () => {
-    const res = await postRequest("/auth/validateToken", {});
+    const res = await postRequest(`${resourceUrl}/validateToken`, {});
 
     console.log("res from validateToken: ", res);
 
