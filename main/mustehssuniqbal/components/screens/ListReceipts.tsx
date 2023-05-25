@@ -5,9 +5,10 @@ import createLoader from "../../loader/loader";
 import moment from "moment";
 import screenNames from "../../constants/screenNames";
 import { defaultNullObject } from "../../utils/objectUtils";
-import { Text } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
+import Authentication from "../auth/Authentication";
 const service = require("../../service/expenseService");
 
 const ListReceipts = ({navigation, route}: any) => {
@@ -37,6 +38,9 @@ const ListReceipts = ({navigation, route}: any) => {
 
     const getEmptyReceiptsMessage = () => (
         <>
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
+
             <Text>{"\n"}</Text>
             <Text>{"\t"}There are no recorded receipts for this expense.</Text>
             <Text>{"\n"}</Text>

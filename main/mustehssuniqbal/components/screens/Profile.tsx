@@ -6,6 +6,7 @@ import GenericTextInput from "../ui/GenericTextInput";
 import { useState, useEffect } from "react";
 import screenNames from "../../constants/screenNames";
 import GenericButton from "../ui/GenericButton";
+import Authentication from "../auth/Authentication";
 
 const service = require("../../service/userService");
 const userStorage = require("../../storage/appspecific/userStorage");
@@ -39,7 +40,8 @@ const Profile = ({navigation, route}: any) => {
 
     return (
         <>
-            <ActivityIndicator animating={isLoading} size="large" />
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
 
             <GenericTextInput
                 label="Username"

@@ -7,6 +7,7 @@ import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import Expense from "../../domain/Expense";
+import Authentication from "../auth/Authentication";
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
@@ -51,7 +52,8 @@ const ExpenseDetail = ({ route, navigation }: any) => {
 
     return (
         <>
-            <ActivityIndicator animating={isLoading} size="large" />
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
 
             <GenericTextInput
                 label='Title'

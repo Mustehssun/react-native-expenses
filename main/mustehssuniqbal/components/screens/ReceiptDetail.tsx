@@ -1,10 +1,11 @@
-import { DataTable, Text } from "react-native-paper";
+import { ActivityIndicator, DataTable, Text } from "react-native-paper";
 import { useEffect, useState } from "react";
 import createLoader from "../../loader/loader";
 const service = require("../../service/expenseService");
 import moment from "moment";
 import screenNames from "../../constants/screenNames";
 import Receipt from "../../domain/Receipt";
+import Authentication from "../auth/Authentication";
 
 const ReceiptDetail = ({route, navigation}: any) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,9 @@ const ReceiptDetail = ({route, navigation}: any) => {
 
     return (
         <>
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
+
             <DataTable>
                 <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}} onPress={() => navigation.navigate(screenNames.EXPENSE_DETAIL, {id: receipt.expense.id})}>
                     <DataTable.Cell>Title</DataTable.Cell>

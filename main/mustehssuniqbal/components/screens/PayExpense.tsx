@@ -5,10 +5,11 @@ import createLoader from "../../loader/loader";
 import { Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { getExpense } from "../../service/expenseService";
-import { DataTable, Text, TextInput } from "react-native-paper";
+import { ActivityIndicator, DataTable, Text, TextInput } from "react-native-paper";
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import moment from "moment";
 import Receipt from "../../domain/Receipt";
+import Authentication from "../auth/Authentication";
 
 const service = require("../../service/expenseService");
 
@@ -57,6 +58,9 @@ const PayExpense = ({route, navigation}: any) => {
 
     return (
         <>
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
+
             <DataTable>
                 <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
                     <DataTable.Cell>Title</DataTable.Cell>

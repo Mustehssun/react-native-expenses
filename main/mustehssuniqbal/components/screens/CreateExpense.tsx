@@ -14,6 +14,7 @@ import createLoader from '../../loader/loader';
 import GenericTextInput from '../ui/GenericTextInput';
 import GenericButton from '../ui/GenericButton';
 import Expense from '../../domain/Expense';
+import Authentication from '../auth/Authentication';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState(new Expense());
@@ -35,7 +36,9 @@ const CreateExpense = ({ navigation }: any) => {
 
     return (
         <>
-            <ActivityIndicator animating={isLoading} size="large" />
+            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+            <ActivityIndicator size="large" animating={isLoading} />
+
             <GenericTextInput
                 label='Title'
                 onChangeText={(title: any) => setExpense({...expense, title})}
