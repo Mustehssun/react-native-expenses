@@ -4,9 +4,7 @@ import { postRequest } from "./rest";
 
 const resourceUrl: string = "/auth";
 
-const signup = (user: User): Promise<User> => {
-    return postRequest(`${resourceUrl}/signup`, user);
-};
+const signup = (user: User): Promise<User> => postRequest(`${resourceUrl}/signup`, user);
 
 const login = async (credentials: User): Promise<User> => {
     const authenticatedUser = await postRequest(`${resourceUrl}/login`, credentials);
@@ -22,8 +20,6 @@ const logout = async () => {
 
 const validateToken = async () => {
     const res = await postRequest(`${resourceUrl}/validateToken`, {});
-
-    console.log("res from validateToken: ", res);
 
     return res == null? false: true;
 };
