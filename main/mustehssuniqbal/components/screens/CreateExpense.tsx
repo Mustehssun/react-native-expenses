@@ -13,9 +13,10 @@ import createLoader from '../../loader/loader';
 
 import GenericTextInput from '../ui/GenericTextInput';
 import GenericButton from '../ui/GenericButton';
+import Expense from '../../domain/Expense';
 
 const CreateExpense = ({ navigation }: any) => {
-    const [expense, setExpense]: [any, any] = useState({amount: 0});
+    const [expense, setExpense]: [any, any] = useState(new Expense());
     const [isLoading, setIsLoading]: [any, any] = useState(false);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
 

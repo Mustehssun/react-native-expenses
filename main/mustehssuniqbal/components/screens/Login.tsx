@@ -3,11 +3,12 @@ import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import screenNames from "../../constants/screenNames";
 import { Alert } from "react-native";
+import User from "../../domain/User";
 
 const service = require("../../service/authService");
 
 const Login = ({navigation}: any) =>    {
-  const [credentials, setCredentials] = useState({});
+  const [credentials, setCredentials] = useState(new User());
 
   const login = async () => {
     const user = await service.login(credentials);

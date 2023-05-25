@@ -1,4 +1,4 @@
-export default class MonthlyExpense {
+export default class Expense {
     public id: number = 0;
     public title: string = "";
     public recipientName: string = "";

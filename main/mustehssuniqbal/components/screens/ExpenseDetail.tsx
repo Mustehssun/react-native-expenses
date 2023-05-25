@@ -6,10 +6,11 @@ import createLoader from "../../loader/loader";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import Expense from "../../domain/Expense";
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
-    const [expense, setExpense]: [any, any] = useState({});
+    const [expense, setExpense]: [any, any] = useState(new Expense());
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
 
@@ -79,7 +80,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             <Text>{"\n"}</Text>
 
             <GenericButton
-                title="Submit"
+                title="Update"
                 onPress={submit}
                 color="#774BE6"
                 icon="check"

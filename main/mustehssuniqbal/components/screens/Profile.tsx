@@ -1,29 +1,9 @@
-import { useReducer, useState } from "react";
-import { Alert } from "react-native";
-import GenericTextInput from "../ui/GenericTextInput";
-import GenericButton from "../ui/GenericButton";
-import screenNames from "../../constants/screenNames";
 import User from "../../domain/User";
+import GenericTextInput from "../ui/GenericTextInput";
+import { useState } from "react";
 
-const service = require("../../service/authService");
-
-const Signup = ({navigation}) => {
+const Profile = () => {
     const [user, setUser] = useState(new User());
-    const [retypedPassword, setRetypedPassword] = useState("");
-
-    const createAccount = async () => {
-        if(user.password != retypedPassword) {
-            Alert.alert("Passwords do not match.");
-
-            return;
-        }
-
-        const createdUser = await service.signup(user);
-
-        Alert.alert("Account created successfully!");
-
-        navigation.navigate(screenNames.HOME_SCREEN);
-    };
 
     return (
         <>
@@ -80,5 +60,3 @@ const Signup = ({navigation}) => {
         </>
     );
 };
-
-export default Signup;

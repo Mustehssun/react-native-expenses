@@ -8,11 +8,12 @@ import { getExpense } from "../../service/expenseService";
 import { DataTable, Text, TextInput } from "react-native-paper";
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import moment from "moment";
+import Receipt from "../../domain/Receipt";
 
 const service = require("../../service/expenseService");
 
 const PayExpense = ({route, navigation}: any) => {
-    const [payment, setPayment] = useState({});
+    const [payment, setPayment] = useState(new Receipt());
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
     const [expense, setExpense] = useState({});

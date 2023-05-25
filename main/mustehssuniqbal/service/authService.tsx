@@ -1,11 +1,12 @@
+import User from "../domain/User";
 import { storage } from "../polymorphicDispatch/storage";
 import { postRequest } from "./rest";
 
-const signup = (user: any) => {
+const signup = (user: User): Promise<User> => {
     return postRequest("/auth/signup", user);
 };
 
-const login = async (credentials: any) => {
+const login = async (credentials: User): Promise<User> => {
     const authenticatedUser = await postRequest("/auth/login", credentials);
     if(authenticatedUser != null) {
         await storage.setItem("user", authenticatedUser);

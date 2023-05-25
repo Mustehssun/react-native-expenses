@@ -4,13 +4,12 @@ import createLoader from "../../loader/loader";
 const service = require("../../service/expenseService");
 import moment from "moment";
 import screenNames from "../../constants/screenNames";
+import Receipt from "../../domain/Receipt";
 
 const ReceiptDetail = ({route, navigation}: any) => {
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
-    const [receipt, setReceipt] = useState({
-        expense: {}
-    });
+    const [receipt, setReceipt] = useState(new Receipt());
 
     useEffect(() => {
         const load = async () => {
