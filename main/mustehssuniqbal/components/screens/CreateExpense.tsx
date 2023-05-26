@@ -35,7 +35,7 @@ const CreateExpense = ({ navigation }: any) => {
     };
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
 
@@ -66,10 +66,10 @@ const CreateExpense = ({ navigation }: any) => {
             <GenericButton
                 title="Submit"
                 onPress={submit}
-                color="#774BE6"
+                color="#145614"
                 icon="check"
             />
-        </>
+        </View>
     );
 };
 

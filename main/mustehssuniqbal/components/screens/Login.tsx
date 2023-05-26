@@ -2,7 +2,7 @@ import { useState } from "react";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import screenNames from "../../constants/screenNames";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import User from "../../domain/User";
 
 const service = require("../../service/authService");
@@ -24,7 +24,7 @@ const Login = ({navigation}: any) =>    {
   };
   
   return (
-    <>
+    <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
         <GenericTextInput 
             label="Username"
             onChangeText={(username: string) => setCredentials({...credentials, username})}
@@ -42,9 +42,9 @@ const Login = ({navigation}: any) =>    {
             title="Login"
             onPress={login}
             icon="login"
-            color="red"
+            color="#145614"
         />
-    </>
+    </View>
   );
 };
 

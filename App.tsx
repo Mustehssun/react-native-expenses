@@ -25,6 +25,17 @@ import Profile from './main/mustehssuniqbal/components/screens/Profile';
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
 
+  const actionBarStyle = {
+    headerStyle: {
+      backgroundColor: '#6750a4',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerTitleAlign: "center"
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={screenNames.HOME_SCREEN}>
@@ -33,65 +44,88 @@ function App(): JSX.Element {
           component={HomeScreen}
           options={{
             title: "Expense Bookkeeping",
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold'
-            },
-            headerTitleAlign: "center"
+            ...actionBarStyle
           }}
         />
         <Stack.Screen
           name={screenNames.CREATE_EXPENSE}
           component={CreateExpense}
-          options={{title: "Create Expense"}}
+          options={{
+            title: "Create Expense",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.LIST_EXPENSES}
           component={ListExpenses}
-          options={{title: "Expenses"}}
+          options={{
+            title: "Expenses",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.EXPENSE_DETAIL}
           component={ExpenseDetail}
-          options={{title: "Expense Detail"}}
+          options={{
+            title: "Expense Detail",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.PAY_EXPENSE}
           component={PayExpense}
-          options={{title: "Pay Expense"}}
+          options={{
+            title: "Pay Expense",
+            ...actionBarStyle
+        }}
         />
         <Stack.Screen
           name={screenNames.LIST_RECEIPTS}
           component={ListReceipts}
-          options={{title: "Receipts"}}
+          options={{
+            title: "Receipts",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.RECEIPT_DETAIL}
           component={ReceiptDetail}
-          options={{title: "Receipt Detail"}}
+          options={{
+            title: "Receipt Detail",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.SIGNUP}
           component={Signup}
-          options={{title: "Signup"}}
+          options={{
+            title: "Signup",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.LOGIN}
           component={Login}
-          options={{title: "Login"}}
+          options={{
+            title: "Login",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.LOGOUT}
           component={Logout}
-          options={{title: "Logout"}}
+          options={{
+            title: "Logout",
+            ...actionBarStyle
+          }}
         />
         <Stack.Screen
           name={screenNames.PROFILE}
           component={Profile}
-          options={{title: "User Profile"}}
+          options={{
+            title: "User Profile",
+            ...actionBarStyle
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

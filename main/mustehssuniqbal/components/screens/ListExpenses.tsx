@@ -1,4 +1,4 @@
-import { FlatList, Text, Button, ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { useEffect, useState } from "react";
 import screenNames from "../../constants/screenNames";
 import { getExpenses } from "../../service/expenseService";
@@ -23,19 +23,20 @@ const ListExpenses = ({navigation}: any) => {
     }, []);
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
-
             <ActivityIndicator size="large" animating={isLoading} />
-            
+
             <GenericList
                 data={expenses}
                 getTitle={(item: any) => item.title}
                 getDescription={(item: any) => "Type of expense (TODO)"}
                 getIcon={(item: any) => "menu"}
                 onItemPress={(item: any) => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item.id })}
+                evenItemColor="#eaddff"
+                oddItemColor="#cfbcff"
             />
-        </>
+        </View>
     );
 };
 

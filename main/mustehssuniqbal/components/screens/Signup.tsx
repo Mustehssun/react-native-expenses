@@ -1,5 +1,5 @@
-import { useReducer, useState } from "react";
-import { Alert } from "react-native";
+import { useState } from "react";
+import { Alert, View } from "react-native";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import screenNames from "../../constants/screenNames";
@@ -26,7 +26,7 @@ const Signup = ({navigation}) => {
     };
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <GenericTextInput
                 label="Username"
                 onChangeText={(username: string) => setUser({...user, username})}
@@ -68,10 +68,10 @@ const Signup = ({navigation}) => {
             <GenericButton
                 title="Create Account"
                 onPress={() => createAccount()}
-                color="green"
+                color="#145614"
                 icon="account"
             />
-        </>
+        </View>
     );
 };
 

@@ -4,6 +4,7 @@ import { Alert } from "react-native";
 import createLoader from "../../loader/loader";
 import screenNames from "../../constants/screenNames";
 import { logout } from "../../service/authService";
+import { View } from "react-native";
 
 const Logout = ({navigation}: any) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -24,10 +25,10 @@ const Logout = ({navigation}: any) => {
     }, []);
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <ActivityIndicator size="large" animating={isLoading} />
             <Text>Logging out...</Text>
-        </>
+        </View>
     );
 };
 

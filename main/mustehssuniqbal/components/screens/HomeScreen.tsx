@@ -58,13 +58,15 @@ const HomeScreen = ({navigation}: any) => {
         }];
 
     return (
-        <ScrollView>
+        <ScrollView style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <GenericList
                 data={list}
                 getTitle={(item: any) => item.title}
                 getDescription={(item: any) => item.description}
                 getIcon={(item: any) => item.icon}
                 onItemPress={(item: any) => navigation.navigate(item.navigationScreen)}
+                evenItemColor="#eaddff"
+                oddItemColor="#cfbcff"
             />
         </ScrollView>
     );

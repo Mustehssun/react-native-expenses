@@ -1,5 +1,5 @@
 import { ActivityIndicator } from "react-native-paper";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import User from "../../domain/User";
 import createLoader from "../../loader/loader";
 import GenericTextInput from "../ui/GenericTextInput";
@@ -39,7 +39,7 @@ const Profile = ({navigation, route}: any) => {
     };
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
 
@@ -73,7 +73,7 @@ const Profile = ({navigation, route}: any) => {
                 color="green"
                 icon="check"
             />
-        </>
+        </View>
     );
 };
 

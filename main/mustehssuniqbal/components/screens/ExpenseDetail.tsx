@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, TextInput, Button, Alert, ActivityIndicator } from "react-native";
+import { Text, Alert, ActivityIndicator, View } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { deleteExpense, getExpense, updateExpense } from "../../service/expenseService";
 import createLoader from "../../loader/loader";
@@ -51,7 +51,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
     };
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
 
@@ -84,30 +84,28 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             <GenericButton
                 title="Update"
                 onPress={submit}
-                color="#774BE6"
+                color="#3b6633"
                 icon="check"
             />
             <GenericButton
                 title="Delete"
                 onPress={deleteExpense}
-                color="#E02940"
+                color="#21005d"
                 icon="delete"
             />
-
             <GenericButton
                 title="Show Receipts"
                 onPress={() => navigation.navigate(screenNames.LIST_RECEIPTS, { expenseId: expense.id})}
-                color="#194D33"
+                color="#2e512e"
                 icon="receipt"
             />
-
             <GenericButton
                 title="Record payment"
                 onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { expenseId: expense.id})}
-                color="#32D857"
+                color="#4105ad"
                 icon="currency-eur"
             />
-        </>
+        </View>
     );
 };
 

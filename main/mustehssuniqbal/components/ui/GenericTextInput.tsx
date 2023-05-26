@@ -26,6 +26,7 @@ const GenericTextInput = ({
             onPressOut={onPressOut}
             textContentType={type}
             {...optionalProps}
+            style={{borderColor: "solid", backgroundColor: "#ddceff"}}
         />
     );
 };

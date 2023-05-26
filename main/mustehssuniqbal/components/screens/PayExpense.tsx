@@ -6,10 +6,11 @@ import { Alert } from "react-native";
 import screenNames from "../../constants/screenNames";
 import { getExpense } from "../../service/expenseService";
 import { ActivityIndicator, DataTable, Text, TextInput } from "react-native-paper";
-import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import moment from "moment";
 import Receipt from "../../domain/Receipt";
 import Authentication from "../auth/Authentication";
+import { View } from "react-native";
 
 const service = require("../../service/expenseService");
 
@@ -57,22 +58,22 @@ const PayExpense = ({route, navigation}: any) => {
     };
 
     return (
-        <>
+        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
 
             <DataTable>
-                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#A8B5AE"}}>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#cfbcff"}}>
                     <DataTable.Cell>Title</DataTable.Cell>
                     <DataTable.Cell>{expense.title}</DataTable.Cell>
                 </DataTable.Row>
 
-                <DataTable.Row>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#eaddff"}}>
                     <DataTable.Cell>Recipient</DataTable.Cell>
                     <DataTable.Cell>{expense.recipientName}</DataTable.Cell>
                 </DataTable.Row>
 
-                <DataTable.Row>
+                <DataTable.Row style={{borderColor: "solid", backgroundColor: "#cfbcff"}}>
                     <DataTable.Cell>Relation with Recipient</DataTable.Cell>
                     <DataTable.Cell>{expense.relationWithRecipient}</DataTable.Cell>
                 </DataTable.Row>
@@ -100,10 +101,10 @@ const PayExpense = ({route, navigation}: any) => {
             <GenericButton
                 title="Confirm"
                 onPress={pay}
-                color="green"
+                color="#145614"
                 icon="check"
             />
-        </>
+        </View>
     );
 };
 
