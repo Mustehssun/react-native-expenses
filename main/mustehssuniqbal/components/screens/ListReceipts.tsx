@@ -8,7 +8,7 @@ import { defaultNullObject } from "../../utils/objectUtils";
 import { ActivityIndicator, Text } from "react-native-paper";
 import GenericButton from "../ui/GenericButton";
 import Authentication from "../auth/Authentication";
-import { backgroundColor, listShades } from "../../uniformTheme/uniformTheme";
+import { listShades } from "../../uniformTheme/uniformTheme";
 
 const service = require("../../service/expenseService");
 

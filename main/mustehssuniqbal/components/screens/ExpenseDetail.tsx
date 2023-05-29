@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Text, Alert, ActivityIndicator, View } from "react-native";
 import screenNames from "../../constants/screenNames";
-import { deleteExpense, getExpense, updateExpense } from "../../service/expenseService";
+import { getExpense, updateExpense } from "../../service/expenseService";
 import createLoader from "../../loader/loader";
 import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 import Expense from "../../domain/Expense";
 import Authentication from "../auth/Authentication";
 const service = require("../../service/expenseService");

@@ -8,7 +8,7 @@ import { backgroundColor } from "../../uniformTheme/uniformTheme";
 
 const service = require("../../service/authService");
 
-const Signup = ({navigation}) => {
+const Signup = ({navigation}: any) => {
     const [user, setUser] = useState(new User());
     const [retypedPassword, setRetypedPassword] = useState("");
 

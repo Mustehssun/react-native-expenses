@@ -1,19 +1,11 @@
 import screenNames from "../../constants/screenNames";
 import React from "react";
-import { useState, useEffect } from "react";
-import { ScrollView, Alert } from "react-native";
+import { ScrollView } from "react-native";
 import imagesBaseUrl from "../../constants/images";
 import GenericList from "../ui/GenericList";
-import { Text } from "react-native-paper";
-import { storage } from "../../polymorphicDispatch/storage";
-import GenericButton from "../ui/GenericButton";
-import GenericTextInput from "../ui/GenericTextInput";
-import { backgroundColor, listShades } from "../../uniformTheme/uniformTheme";
+import { listShades } from "../../uniformTheme/uniformTheme";
 
 const HomeScreen = ({navigation}: any) => {
-    let [user, setUser] = useState({});
-    const [username, setUsername] = useState("");
-
     const list = [{
              title: "Create Expense", 
              description: "File your expense here", 

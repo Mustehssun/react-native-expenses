@@ -5,7 +5,7 @@ import { getExpenses } from "../../service/expenseService";
 import createLoader from "../../loader/loader";
 import GenericList from "../ui/GenericList";
 import Authentication from "../auth/Authentication";
-import { backgroundColor, listShades } from "../../uniformTheme/uniformTheme";
+import { listShades } from "../../uniformTheme/uniformTheme";
 
 const ListExpenses = ({navigation}: any) => {
     const [expenses, setExpenses] = useState([]);

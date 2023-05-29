@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import {
-    Text,
-    TextInput,
-    Button,
     View,
     Alert,
     ActivityIndicator
