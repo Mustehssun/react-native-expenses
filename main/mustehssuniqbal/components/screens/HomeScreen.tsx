@@ -8,6 +8,7 @@ import { Text } from "react-native-paper";
 import { storage } from "../../polymorphicDispatch/storage";
 import GenericButton from "../ui/GenericButton";
 import GenericTextInput from "../ui/GenericTextInput";
+import { backgroundColor, listShades } from "../../uniformTheme/uniformTheme";
 
 const HomeScreen = ({navigation}: any) => {
     let [user, setUser] = useState({});
@@ -65,8 +66,8 @@ const HomeScreen = ({navigation}: any) => {
                 getDescription={(item: any) => item.description}
                 getIcon={(item: any) => item.icon}
                 onItemPress={(item: any) => navigation.navigate(item.navigationScreen)}
-                evenItemColor="#eaddff"
-                oddItemColor="#cfbcff"
+                evenItemColor={listShades.evenItem}
+                oddItemColor={listShades.oddItem}
             />
         </ScrollView>
     );

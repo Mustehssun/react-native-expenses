@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import screenNames from "../../constants/screenNames";
 import GenericButton from "../ui/GenericButton";
 import Authentication from "../auth/Authentication";
+import { backgroundColor } from "../../uniformTheme/uniformTheme";
 
 const service = require("../../service/userService");
 const userStorage = require("../../storage/appspecific/userStorage");
@@ -39,7 +40,7 @@ const Profile = ({navigation, route}: any) => {
     };
 
     return (
-        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
+        <View style={{borderColor: "solid", backgroundColor: backgroundColor.primaryShades.lighter}}>
             <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
             <ActivityIndicator size="large" animating={isLoading} />
 
@@ -70,7 +71,7 @@ const Profile = ({navigation, route}: any) => {
             <GenericButton
                 title="Update"
                 onPress={() => updateUser()}
-                color="green"
+                color={backgroundColor.secondaryShades.dark}
                 icon="check"
             />
         </View>

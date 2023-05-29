@@ -4,6 +4,7 @@ import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import screenNames from "../../constants/screenNames";
 import User from "../../domain/User";
+import { backgroundColor } from "../../uniformTheme/uniformTheme";
 
 const service = require("../../service/authService");
 
@@ -26,7 +27,7 @@ const Signup = ({navigation}) => {
     };
 
     return (
-        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
+        <View style={{borderStyle: "solid", backgroundColor: backgroundColor.primaryShades.lighter}}>
             <GenericTextInput
                 label="Username"
                 onChangeText={(username: string) => setUser({...user, username})}
@@ -68,7 +69,7 @@ const Signup = ({navigation}) => {
             <GenericButton
                 title="Create Account"
                 onPress={() => createAccount()}
-                color="#145614"
+                color={backgroundColor.secondaryShades.dark}
                 icon="account"
             />
         </View>

@@ -1,4 +1,5 @@
 import { TextInput } from "react-native-paper";
+import { backgroundColor } from "../../uniformTheme/uniformTheme";
 
 
 const GenericTextInput = ({
@@ -26,7 +27,7 @@ const GenericTextInput = ({
             onPressOut={onPressOut}
             textContentType={type}
             {...optionalProps}
-            style={{borderColor: "solid", backgroundColor: "#ddceff"}}
+            style={{borderColor: "solid", backgroundColor: backgroundColor.primaryShades.light}}
         />
     );
 };

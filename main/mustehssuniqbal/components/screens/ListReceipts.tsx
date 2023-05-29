@@ -8,6 +8,7 @@ import { defaultNullObject } from "../../utils/objectUtils";
 import { ActivityIndicator, Text } from "react-native-paper";
 import GenericButton from "../ui/GenericButton";
 import Authentication from "../auth/Authentication";
+import { backgroundColor, listShades } from "../../uniformTheme/uniformTheme";
 
 const service = require("../../service/expenseService");
 
@@ -63,8 +64,8 @@ const ListReceipts = ({navigation, route}: any) => {
                 getIcon={(item: any) => "receipt"}
                 getDescription={(item: any) => `Amount paid: ${item.amountPaid} ${item.paidOn == null? "": " - " + moment(item.paidOn).format("ddd DD-MM-yyyy")}`}
                 onItemPress={(item: any) => navigation.navigate(screenNames.RECEIPT_DETAIL, {id: item.id})}
-                evenItemColor="#eaddff"
-                oddItemColor="#cfbcff"
+                evenItemColor={listShades.evenItem}
+                oddItemColor={listShades.oddItem}
             />
             }
         </View>
