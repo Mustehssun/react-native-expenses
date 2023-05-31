@@ -6,7 +6,7 @@ const jwtInterceptor = async (config: any) => {
     console.log("user: ", user);
 
     if(user == null || user?.jwt == null) {
-        console.log("jwt is not present. Redirect to login");
+        console.log("jwt is not present. Redirect to login");   //TODO
     }
     else {
         config.headers.authorization = `Bearer ${user?.jwt}`;
