@@ -15,13 +15,32 @@ const ListExpenses = ({navigation}: any) => {
     useEffect(() => {
         const load = async () => {
             showLoader();
-            const data = await getExpenses();
+            const data: any = await getExpenses();
 
             setExpenses(data);
             hideLoader();
         }
         load();
     }, []);
+
+    const renderDescription = (item: any) => {
+        console.log("item: ", item);
+        if(item.isDaily) {
+            return "Daily Expense";
+        }
+        else if(item.isWeekly) {
+            return "Weekly Expense";
+        }
+        else if(item.isMonthly) {
+            return "Monthly Expense";
+        }
+        else if(item.isYearly) {
+            return "Yearly Expense";
+        }
+        else {
+            return "One-Time expense";
+        }
+    };
 
     return (
         <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
@@ -31,7 +50,7 @@ const ListExpenses = ({navigation}: any) => {
             <GenericList
                 data={expenses}
                 getTitle={(item: any) => item.title}
-                getDescription={(item: any) => "Type of expense (TODO)"}
+                getDescription={renderDescription}
                 getIcon={(item: any) => "menu"}
                 onItemPress={(item: any) => navigation.navigate(screenNames.EXPENSE_DETAIL, { id: item.id })}
                 evenItemColor={listShades.evenItem}
