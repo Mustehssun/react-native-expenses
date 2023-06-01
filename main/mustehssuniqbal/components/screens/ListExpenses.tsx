@@ -6,6 +6,7 @@ import createLoader from "../../loader/loader";
 import GenericList from "../ui/GenericList";
 import Authentication from "../auth/Authentication";
 import { listShades } from "../../uniformTheme/uniformTheme";
+import Expense from "../../domain/Expense";
 
 const ListExpenses = ({navigation}: any) => {
     const [expenses, setExpenses] = useState([]);
@@ -23,18 +24,19 @@ const ListExpenses = ({navigation}: any) => {
         load();
     }, []);
 
-    const renderDescription = (item: any) => {
-        console.log("item: ", item);
-        if(item.isDaily) {
+    const renderDescription = (expense: Expense) => {
+        console.log("expense: ", expense);
+
+        if(expense.reminder.isDaily) {
             return "Daily Expense";
         }
-        else if(item.isWeekly) {
+        else if(expense.reminder.isWeekly) {
             return "Weekly Expense";
         }
-        else if(item.isMonthly) {
+        else if(expense.reminder.isMonthly) {
             return "Monthly Expense";
         }
-        else if(item.isYearly) {
+        else if(expense.reminder.isYearly == true) {
             return "Yearly Expense";
         }
         else {
