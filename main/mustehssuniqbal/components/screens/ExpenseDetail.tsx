@@ -7,6 +7,7 @@ import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import Expense from "../../domain/Expense";
 import Authentication from "../auth/Authentication";
+
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {

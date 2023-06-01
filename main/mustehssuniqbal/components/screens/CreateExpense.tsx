@@ -21,6 +21,8 @@ const CreateExpense = ({ navigation }: any) => {
     const submit = async () => {
         showLoader();
 
+        console.log("expense: ", expense);
+
         const createdExpense = createExpense(expense);
 
         setExpense(createdExpense);
