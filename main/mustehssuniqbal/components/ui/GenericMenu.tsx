@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Button, Menu } from "react-native-paper";
 
-const GenericMenu = () => {
+const GenericMenu = ({
+    title,
+    items,
+    onSelect
+}: any) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [selectedItem, setSelectedItem] = useState({});
 
     const openMenu = () => setIsVisible(true);
 
@@ -12,10 +17,15 @@ const GenericMenu = () => {
         <Menu
             visible={isVisible}
             onDismiss={closeMenu}
-            anchor={<Button onPress={openMenu}>Show Menu</Button>}
+            anchor={<Button onPress={openMenu}>{title}</Button>}
         >
-            <Menu.Item onPress={() => {}} title="Item1" />
-            <Menu.Item onPress={() => {}} title="Item2" />
+            {items.map((item: any) => <Menu.Item 
+                                        onPress={() => { 
+                                            setSelectedItem(item); 
+                                            onSelect(item);
+                                            closeMenu();
+                                        }} 
+                                        title={item.value} />)}
         </Menu>
     );
 };

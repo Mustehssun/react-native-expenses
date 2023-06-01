@@ -14,11 +14,27 @@ import Expense from '../../domain/Expense';
 import Authentication from '../auth/Authentication';
 import { PaperProvider } from 'react-native-paper';
 import GenericMenu from '../ui/GenericMenu';
+import { Reminder } from '../../domain/reminder/Reminder';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState(new Expense());
     const [isLoading, setIsLoading]: [any, any] = useState(false);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
+
+    const onReminderTypeSelect = (selectedItem: any) => {
+        if(selectedItem.value == "Daily") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: true, isWeekly: false, isMonthly: false, isYearly: false}});
+        }
+        else if(selectedItem.value == "Weekly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: true, isMonthly: false, isYearly: false}});
+        }
+        else if(selectedItem.value == "Monthly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: false, isMonthly: true, isYearly: false}});
+        }
+        else if(selectedItem.value == "Yearly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: false, isMonthly: false, isYearly: true}});
+        }
+    };
 
     const submit = async () => {
         showLoader();
@@ -65,7 +81,17 @@ const CreateExpense = ({ navigation }: any) => {
                     value={expense?.amount + ""}
                 />
 
-                <GenericMenu />
+                <GenericMenu
+                    title="Select Type of Reminder"
+                    items={[
+                        { value: "One Time" },
+                        { value: "Daily" },
+                        { value: "Weekly" },
+                        { value: "Monthly" },
+                        { value: "Yearly" }
+                    ]}
+                    onSelect={onReminderTypeSelect}
+                />
 
                 <GenericButton
                     title="Submit"
