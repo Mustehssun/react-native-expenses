@@ -12,6 +12,8 @@ import GenericTextInput from '../ui/GenericTextInput';
 import GenericButton from '../ui/GenericButton';
 import Expense from '../../domain/Expense';
 import Authentication from '../auth/Authentication';
+import { PaperProvider } from 'react-native-paper';
+import GenericMenu from '../ui/GenericMenu';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState(new Expense());
@@ -34,41 +36,45 @@ const CreateExpense = ({ navigation }: any) => {
     };
 
     return (
-        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
-            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
-            <ActivityIndicator size="large" animating={isLoading} />
+        <PaperProvider>
+            <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
+                <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+                <ActivityIndicator size="large" animating={isLoading} />
 
-            <GenericTextInput
-                label='Title'
-                onChangeText={(title: any) => setExpense({...expense, title})}
-                value={expense?.title}
-            />
+                <GenericTextInput
+                    label='Title'
+                    onChangeText={(title: any) => setExpense({...expense, title})}
+                    value={expense?.title}
+                />
 
-            <GenericTextInput
-                label='Recipient Name'
-                onChangeText={(recipientName: any) => setExpense({...expense, recipientName})}
-                value={expense?.recipientName}
-            />
+                <GenericTextInput
+                    label='Recipient Name'
+                    onChangeText={(recipientName: any) => setExpense({...expense, recipientName})}
+                    value={expense?.recipientName}
+                />
 
-            <GenericTextInput
-                label='Relation with Recipient'
-                onChangeText={(relationWithRecipient: any) => setExpense({...expense, relationWithRecipient})}
-                value={expense?.relationWithRecipient}
-            />
+                <GenericTextInput
+                    label='Relation with Recipient'
+                    onChangeText={(relationWithRecipient: any) => setExpense({...expense, relationWithRecipient})}
+                    value={expense?.relationWithRecipient}
+                />
 
-            <GenericTextInput
-                label='Amount'
-                onChangeText={(amount: any) => setExpense({...expense, amount})}
-                value={expense?.amount + ""}
-            />
+                <GenericTextInput
+                    label='Amount'
+                    onChangeText={(amount: any) => setExpense({...expense, amount})}
+                    value={expense?.amount + ""}
+                />
 
-            <GenericButton
-                title="Submit"
-                onPress={submit}
-                color="#145614"
-                icon="check"
-            />
-        </View>
+                <GenericMenu />
+
+                <GenericButton
+                    title="Submit"
+                    onPress={submit}
+                    color="#145614"
+                    icon="check"
+                />
+            </View>
+        </PaperProvider>
     );
 };
 
