@@ -1,6 +1,6 @@
 const backgroundColor: any = {
     primaryShades: {
-        darker: "blue",
+        darker: "#1A237E",
         dark: "green",
         medium: "red",
         light: "#ddceff",
