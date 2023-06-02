@@ -7,6 +7,8 @@ import GenericTextInput from "../ui/GenericTextInput";
 import GenericButton from "../ui/GenericButton";
 import Expense from "../../domain/Expense";
 import Authentication from "../auth/Authentication";
+import GenericMenu from "../ui/GenericMenu";
+import { PaperProvider } from "react-native-paper";
 
 const service = require("../../service/expenseService");
 
@@ -50,62 +52,91 @@ const ExpenseDetail = ({ route, navigation }: any) => {
         navigation.navigate(screenNames.HOME_SCREEN);
     };
 
+    const onReminderTypeSelect = (selectedItem: any) => {
+        if(selectedItem.value == "Daily") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: true, isWeekly: false, isMonthly: false, isYearly: false}});
+        }
+        else if(selectedItem.value == "Weekly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: true, isMonthly: false, isYearly: false}});
+        }
+        else if(selectedItem.value == "Monthly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: false, isMonthly: true, isYearly: false}});
+        }
+        else if(selectedItem.value == "Yearly") {
+            setExpense({...expense, reminder: {...expense.reminder, isDaily: false, isWeekly: false, isMonthly: false, isYearly: true}});
+        }
+    };
+
     return (
-        <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
-            <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
-            <ActivityIndicator size="large" animating={isLoading} />
+        <PaperProvider>
+            <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
+                <Authentication reroute={() => navigation.navigate(screenNames.HOME_SCREEN)} />
+                <ActivityIndicator size="large" animating={isLoading} />
 
-            <GenericTextInput
-                label='Title'
-                onChangeText={(title: any) => setExpense({...expense, title})}
-                value={expense?.title}
-            />
+                <GenericTextInput
+                    label='Title'
+                    onChangeText={(title: any) => setExpense({...expense, title})}
+                    value={expense?.title}
+                />
 
-            <GenericTextInput
-                label='Recipient Name'
-                onChangeText={(recipientName: any) => setExpense({...expense, recipientName})}
-                value={expense?.recipientName}
-            />
+                <GenericTextInput
+                    label='Recipient Name'
+                    onChangeText={(recipientName: any) => setExpense({...expense, recipientName})}
+                    value={expense?.recipientName}
+                />
 
-            <GenericTextInput
-                label='Relation with Recipient'
-                onChangeText={(relationWithRecipient: any) => setExpense({...expense, relationWithRecipient})}
-                value={expense?.relationWithRecipient}
-            />
+                <GenericTextInput
+                    label='Relation with Recipient'
+                    onChangeText={(relationWithRecipient: any) => setExpense({...expense, relationWithRecipient})}
+                    value={expense?.relationWithRecipient}
+                />
 
-            <GenericTextInput
-                label='Amount'
-                onChangeText={(amount: any) => setExpense({...expense, amount})}
-                value={expense?.amount + ""}
-            />
+                <GenericTextInput
+                    label='Amount'
+                    onChangeText={(amount: any) => setExpense({...expense, amount})}
+                    value={expense?.amount + ""}
+                />
 
-            <Text>{"\n"}</Text>
+                <GenericMenu
+                        title="Select Type of Reminder"
+                        items={[
+                            { value: "One Time" },
+                            { value: "Daily" },
+                            { value: "Weekly" },
+                            { value: "Monthly" },
+                            { value: "Yearly" }
+                        ]}
+                        onSelect={onReminderTypeSelect}
+                    />
 
-            <GenericButton
-                title="Update"
-                onPress={submit}
-                color="#3b6633"
-                icon="check"
-            />
-            <GenericButton
-                title="Delete"
-                onPress={deleteExpense}
-                color="#21005d"
-                icon="delete"
-            />
-            <GenericButton
-                title="Show Receipts"
-                onPress={() => navigation.navigate(screenNames.LIST_RECEIPTS, { expenseId: expense.id})}
-                color="#2e512e"
-                icon="receipt"
-            />
-            <GenericButton
-                title="Record payment"
-                onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { expenseId: expense.id})}
-                color="#4105ad"
-                icon="currency-eur"
-            />
-        </View>
+                <Text>{"\n"}</Text>
+
+                <GenericButton
+                    title="Update"
+                    onPress={submit}
+                    color="#3b6633"
+                    icon="check"
+                />
+                <GenericButton
+                    title="Delete"
+                    onPress={deleteExpense}
+                    color="#21005d"
+                    icon="delete"
+                />
+                <GenericButton
+                    title="Show Receipts"
+                    onPress={() => navigation.navigate(screenNames.LIST_RECEIPTS, { expenseId: expense.id})}
+                    color="#2e512e"
+                    icon="receipt"
+                />
+                <GenericButton
+                    title="Record payment"
+                    onPress={() => navigation.navigate(screenNames.PAY_EXPENSE, { expenseId: expense.id})}
+                    color="#4105ad"
+                    icon="currency-eur"
+                />
+            </View>
+        </PaperProvider>
     );
 };
 

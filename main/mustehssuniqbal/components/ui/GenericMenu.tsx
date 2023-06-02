@@ -6,7 +6,8 @@ import { backgroundColor } from "../../uniformTheme/uniformTheme";
 const GenericMenu = ({
     title,
     items,
-    onSelect
+    onSelect,
+    defaultValue
 }: any) => {
     const [isVisible, setIsVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});
@@ -16,7 +17,7 @@ const GenericMenu = ({
 
     const closeMenu = () => setIsVisible(false);
 
-    const onPress = (item: any) => { 
+    const select = (item: any) => { 
         setSelectedItem(item);
         onSelect(item);
         setButtonText(`Reminder: ${item.value}`);
@@ -36,9 +37,22 @@ const GenericMenu = ({
             {item.value}
             {"\t"}
             {item.value == selectedItem.value?
-                <Icon name="check" size={25} color={backgroundColor.primaryShades.darker} />
-                : <></>}
+                <Icon name="check" size={25} color={backgroundColor.primaryShades.darker} />: 
+                <></>}
         </Text>;
+
+    const renderItem = (item: any) => {
+        if(defaultValue != null && defaultValue == item.value && selectedItem.value == null) {
+            select(item);
+        }
+        return (
+            <Menu.Item 
+                style={itemStyle}
+                onPress={() => select(item)}
+                title={getItemTextWithSelectedIcon(item)}
+            />
+        );
+    };
 
     return (
         <Menu style={menuStyle}
@@ -46,11 +60,7 @@ const GenericMenu = ({
             onDismiss={closeMenu}
             anchor={<Button onPress={openMenu}>{buttonText}</Button>}
         >
-            {items.map((item: any) => <Menu.Item 
-                                            style={itemStyle}
-                                            onPress={() => onPress(item)}
-                                            title={getItemTextWithSelectedIcon(item)}
-                                        />)}
+            {items.map((item: any) => renderItem(item))}
         </Menu>
     );
 };
