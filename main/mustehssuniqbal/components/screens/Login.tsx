@@ -9,7 +9,7 @@ import { backgroundColor } from "../../uniformTheme/uniformTheme";
 const service = require("../../service/authService");
 
 const Login = ({navigation}: any) =>    {
-  const [credentials, setCredentials] = useState(new User());
+  const [credentials, setCredentials]: [User, Function] = useState(new User());
 
   const login = async () => {
     const user = await service.login(credentials);

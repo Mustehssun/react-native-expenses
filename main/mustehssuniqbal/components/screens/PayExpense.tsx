@@ -11,14 +11,15 @@ import moment from "moment";
 import Receipt from "../../domain/Receipt";
 import Authentication from "../auth/Authentication";
 import { View } from "react-native";
+import Expense from "../../domain/Expense";
 
 const service = require("../../service/expenseService");
 
 const PayExpense = ({route, navigation}: any) => {
-    const [payment, setPayment] = useState(new Receipt());
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
-    const [expense, setExpense] = useState({});
+    const [payment, setPayment]: [Receipt, Function] = useState(new Receipt());
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
+    const [expense, setExpense]: [Expense, Function] = useState(new Expense());
 
     useEffect(() => {
         const load = async () => {

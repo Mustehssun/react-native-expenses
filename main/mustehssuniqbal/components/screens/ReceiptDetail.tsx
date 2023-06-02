@@ -11,9 +11,9 @@ import { backgroundColor, gridShades } from "../../uniformTheme/uniformTheme";
 const service = require("../../service/expenseService");
 
 const ReceiptDetail = ({route, navigation}: any) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
-    const [receipt, setReceipt] = useState(new Receipt());
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
+    const [receipt, setReceipt]: [Receipt, Function] = useState(new Receipt());
 
     useEffect(() => {
         const load = async () => {

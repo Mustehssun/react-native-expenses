@@ -14,10 +14,10 @@ import { Reminder } from "../../domain/reminder/Reminder";
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
-    const [expense, setExpense]: [any, any] = useState(new Expense());
-    const [reminderDefaultValue, setReminderDefaultValue] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
+    const [expense, setExpense]: [Expense, Function] = useState(new Expense());
+    const [reminderDefaultValue, setReminderDefaultValue]: [String, Function] = useState("");
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
 
     const getReminderDefaultValue = (reminder: Reminder) => {
         console.log("reminder: ", reminder);
@@ -46,7 +46,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
     useEffect(() => {
         const load = async () => {
             showLoader();
-            
+
             setExpense(await getExpense(route.params.id));
 
             renderReminder();

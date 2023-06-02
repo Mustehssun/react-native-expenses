@@ -9,8 +9,8 @@ import { backgroundColor } from "../../uniformTheme/uniformTheme";
 const service = require("../../service/authService");
 
 const Signup = ({navigation}: any) => {
-    const [user, setUser] = useState(new User());
-    const [retypedPassword, setRetypedPassword] = useState("");
+    const [user, setUser]: [User, Function] = useState(new User());
+    const [retypedPassword, setRetypedPassword]: [String, Function] = useState("");
 
     const createAccount = async () => {
         if(user.password != retypedPassword) {

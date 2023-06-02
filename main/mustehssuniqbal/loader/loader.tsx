@@ -1,4 +1,4 @@
-const createLoader = (setIsLoading: { (value: React.SetStateAction<boolean>): void; (arg0: boolean): any; }) => {
+const createLoader = (setIsLoading: Function): [Function, Function] => {
     const showLoader = () => setIsLoading(true);
     const hideLoader = () => setIsLoading(false);
 

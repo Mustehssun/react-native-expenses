@@ -12,10 +12,10 @@ import { backgroundColor } from "../../uniformTheme/uniformTheme";
 const service = require("../../service/userService");
 const userStorage = require("../../storage/appspecific/userStorage");
 
-const Profile = ({navigation, route}: any) => {
-    const [user, setUser] = useState(new User());
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
+const Profile = ({navigation}: any) => {
+    const [user, setUser]: [User, Function] = useState(new User());
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
 
     useEffect(() => {
         const loadUser = async (): Promise<void> => {

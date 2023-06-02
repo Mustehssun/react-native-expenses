@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Menu, Text } from "react-native-paper";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { backgroundColor } from "../../uniformTheme/uniformTheme";

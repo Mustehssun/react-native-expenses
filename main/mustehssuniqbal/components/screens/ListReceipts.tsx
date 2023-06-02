@@ -9,13 +9,14 @@ import { ActivityIndicator, Text } from "react-native-paper";
 import GenericButton from "../ui/GenericButton";
 import Authentication from "../auth/Authentication";
 import { listShades } from "../../uniformTheme/uniformTheme";
+import Receipt from "../../domain/Receipt";
 
 const service = require("../../service/expenseService");
 
 const ListReceipts = ({navigation, route}: any) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
-    const [receipts, setReceipts] = useState([]);
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
+    const [receipts, setReceipts]: [Array<Receipt>, Function] = useState([]);
 
     const expenseId = defaultNullObject(() => route.params.expenseId);
 

@@ -7,8 +7,8 @@ import { logout } from "../../service/authService";
 import { View } from "react-native";
 
 const Logout = ({navigation}: any) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
 
     useEffect(() => {
         const getTokenAndLogout = async () => {

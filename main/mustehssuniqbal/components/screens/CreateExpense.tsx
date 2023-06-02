@@ -14,12 +14,11 @@ import Expense from '../../domain/Expense';
 import Authentication from '../auth/Authentication';
 import { PaperProvider } from 'react-native-paper';
 import GenericMenu from '../ui/GenericMenu';
-import { Reminder } from '../../domain/reminder/Reminder';
 
 const CreateExpense = ({ navigation }: any) => {
-    const [expense, setExpense]: [any, any] = useState(new Expense());
-    const [isLoading, setIsLoading]: [any, any] = useState(false);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
+    const [expense, setExpense]: [Expense, Function] = useState(new Expense());
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(false);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
 
     const onReminderTypeSelect = (selectedItem: any) => {
         if(selectedItem.value == "Daily") {

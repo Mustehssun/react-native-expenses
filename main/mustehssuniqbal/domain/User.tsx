@@ -1,8 +1,8 @@
 export default class User {
-    private username: string = "";
-    private email: string = "";
-    private firstName: string = "";
-    private lastName: string = "";
-    private age: number = 0;
-    private password: string = "";
+    public username: string = "";
+    public email: string = "";
+    public firstName: string = "";
+    public lastName: string = "";
+    public age: number = 0;
+    public password: string = "";
 };

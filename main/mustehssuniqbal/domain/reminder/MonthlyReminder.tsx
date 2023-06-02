@@ -1,5 +1,5 @@
 import { Reminder } from "./Reminder";
 
-export class MonthlyReminder extends Reminder {
+export default class MonthlyReminder extends Reminder {
     public day: number = 0;
 };

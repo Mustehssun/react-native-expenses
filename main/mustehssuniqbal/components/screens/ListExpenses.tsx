@@ -9,9 +9,9 @@ import { listShades } from "../../uniformTheme/uniformTheme";
 import Expense from "../../domain/Expense";
 
 const ListExpenses = ({navigation}: any) => {
-    const [expenses, setExpenses] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [showLoader, hideLoader] = createLoader(setIsLoading);
+    const [expenses, setExpenses]: [Array<Expense>, Function] = useState([]);
+    const [isLoading, setIsLoading]: [Boolean, Function] = useState(true);
+    const [showLoader, hideLoader]: [Function, Function] = createLoader(setIsLoading);
 
     useEffect(() => {
         const load = async () => {
