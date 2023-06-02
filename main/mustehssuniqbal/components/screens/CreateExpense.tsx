@@ -14,6 +14,9 @@ import Expense from '../../domain/Expense';
 import Authentication from '../auth/Authentication';
 import { PaperProvider } from 'react-native-paper';
 import GenericMenu from '../ui/GenericMenu';
+import MonthlyReminderComponent from '../subscreens/reminders/MonthlyReminder';
+import { Reminder } from '../../domain/reminder/Reminder';
+import MonthlyReminder from '../../domain/reminder/MonthlyReminder';
 
 const CreateExpense = ({ navigation }: any) => {
     const [expense, setExpense]: [Expense, Function] = useState(new Expense());
@@ -48,6 +51,11 @@ const CreateExpense = ({ navigation }: any) => {
         Alert.alert("Expense created successfully!");
 
         navigation.navigate(screenNames.HOME_SCREEN);
+    };
+
+    const onChangeReminder = (reminder: MonthlyReminder) => {
+        expense.reminder.monthlyDate = reminder.monthlyDate;
+        setExpense(expense);
     };
 
     return (
@@ -90,6 +98,10 @@ const CreateExpense = ({ navigation }: any) => {
                         { value: "Yearly" }
                     ]}
                     onSelect={onReminderTypeSelect}
+                />
+
+                <MonthlyReminderComponent
+                    onChange={onChangeReminder}
                 />
 
                 <GenericButton

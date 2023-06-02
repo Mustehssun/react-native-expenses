@@ -10,6 +10,8 @@ import Authentication from "../auth/Authentication";
 import GenericMenu from "../ui/GenericMenu";
 import { PaperProvider } from "react-native-paper";
 import { Reminder } from "../../domain/reminder/Reminder";
+import MonthlyReminderComponent from "../subscreens/reminders/MonthlyReminder";
+import MonthlyReminder from "../../domain/reminder/MonthlyReminder";
 
 const service = require("../../service/expenseService");
 
@@ -38,7 +40,6 @@ const ExpenseDetail = ({ route, navigation }: any) => {
     };
 
     const renderReminder = async () => {
-
         const tempExpenseForReminder = await getExpense(route.params.id);
         setReminderDefaultValue(getReminderDefaultValue(tempExpenseForReminder.reminder));
     };
@@ -48,6 +49,8 @@ const ExpenseDetail = ({ route, navigation }: any) => {
             showLoader();
 
             setExpense(await getExpense(route.params.id));
+
+            console.log("expense: ", await getExpense(route.params.id));
 
             renderReminder();
 
@@ -96,6 +99,11 @@ const ExpenseDetail = ({ route, navigation }: any) => {
         }
     };
 
+    const onChangeReminder = (reminder: MonthlyReminder) => {
+        expense.reminder.monthlyDate = reminder.monthlyDate;
+        setExpense(expense);
+    };
+
     return (
         <PaperProvider>
             <View style={{borderColor: "solid", backgroundColor: "#ddd0fa"}}>
@@ -138,6 +146,11 @@ const ExpenseDetail = ({ route, navigation }: any) => {
                         onSelect={onReminderTypeSelect}
                         defaultValue={reminderDefaultValue}
                     />
+
+                <MonthlyReminderComponent
+                    onChange={onChangeReminder}
+                    defaultMonthlyReminder={expense.reminder}
+                />
 
                 <Text>{"\n"}</Text>
 
