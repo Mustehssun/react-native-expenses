@@ -9,18 +9,47 @@ import Expense from "../../domain/Expense";
 import Authentication from "../auth/Authentication";
 import GenericMenu from "../ui/GenericMenu";
 import { PaperProvider } from "react-native-paper";
+import { Reminder } from "../../domain/reminder/Reminder";
 
 const service = require("../../service/expenseService");
 
 const ExpenseDetail = ({ route, navigation }: any) => {
     const [expense, setExpense]: [any, any] = useState(new Expense());
+    const [reminderDefaultValue, setReminderDefaultValue] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [showLoader, hideLoader] = createLoader(setIsLoading);
 
+    const getReminderDefaultValue = (reminder: Reminder) => {
+        console.log("reminder: ", reminder);
+
+        if(reminder.isDaily == true) {
+            return "Daily";
+        }
+        if(reminder.isWeekly == true) {
+            return "Weekly";
+        }
+        if(reminder.isMonthly == true) {
+            return "Monthly";
+        }
+        if(reminder.isYearly == true) {
+            return "Yearly";
+        }
+        return "One Time";
+    };
+
+    const renderReminder = async () => {
+
+        const tempExpenseForReminder = await getExpense(route.params.id);
+        setReminderDefaultValue(getReminderDefaultValue(tempExpenseForReminder.reminder));
+    };
+
     useEffect(() => {
-        showLoader();
         const load = async () => {
+            showLoader();
+            
             setExpense(await getExpense(route.params.id));
+
+            renderReminder();
 
             hideLoader();
         };
@@ -107,6 +136,7 @@ const ExpenseDetail = ({ route, navigation }: any) => {
                             { value: "Yearly" }
                         ]}
                         onSelect={onReminderTypeSelect}
+                        defaultValue={reminderDefaultValue}
                     />
 
                 <Text>{"\n"}</Text>
